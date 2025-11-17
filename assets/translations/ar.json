@@ -97,6 +97,7 @@
     "order_now" : "اطلب الان" ,
     "you_can_choose_multiple_service" : "يمكنك اختيار اكثر من خدمة",
     "order_and_enjoy_with_our_service" : "اطلب خدماتنا واستمتع بما يميزنا",
-    "choose_your_type" : "حدد النوع"
+    "choose_your_type" : "حدد النوع",
+    "field_is_required" : "هذا الحقل مطلوب"
   } 
   

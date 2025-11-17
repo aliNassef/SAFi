@@ -19,12 +19,18 @@ class AppTheme {
       color: AppColors.grey,
     ),
 
-    textSelectionTheme: TextSelectionThemeData(
-      selectionColor: AppColors.grey,
-      selectionHandleColor: AppColors.grey,
-      cursorColor: AppColors.light,
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: AppColors.lightGrey,
+      selectionHandleColor: AppColors.primary,
+      cursorColor: AppColors.primary,
     ),
-
+    menuTheme: const MenuThemeData(
+      style: MenuStyle(
+        padding: WidgetStatePropertyAll(
+          EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        ),
+      ),
+    ),
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: AppColors.primary,

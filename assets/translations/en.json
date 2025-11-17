@@ -97,7 +97,8 @@
     "order_now" : "Order Now" ,
     "you_can_choose_multiple_service" : "You Can Choose Multiple Service",
     "order_and_enjoy_with_our_service" : "Order And Enjoy With Our Service",
-    "choose_your_type" : "choose your type"
+    "choose_your_type" : "choose your type",
+    "field_is_required" : "Field Is Required"
 
   }
   

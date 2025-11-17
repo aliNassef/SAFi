@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../data/repo/auth_repo.dart';
 import 'auth_state.dart';
@@ -39,5 +40,10 @@ class AuthCubit extends Cubit<AuthState> {
     } else {
       emit(AuthFirstTime());
     }
+  }
+
+  User? getCurrentUser() {
+    final user = _authRepo.getCurrentUser();
+    return user;
   }
 }

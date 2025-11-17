@@ -1,5 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:safi/features/orders/data/datasource/order_remote_datasource.dart';
+import 'package:safi/features/orders/data/repo/order_repo.dart';
+import 'package:safi/features/orders/data/repo/order_repo_impl.dart';
+import 'package:safi/features/orders/presentation/controller/order_cubit/order_cubit.dart';
 
 import '../../features/auth/data/datasource/auth_remote_datasource.dart';
 import '../../features/auth/data/repo/auth_repo.dart';
@@ -19,6 +23,7 @@ Future<void> setupServiceLocator() async {
   _setupExternal();
   _setupAuthFeature();
   _setupHomeFeature();
+  _setupOrderFeature();
 }
 
 void _setupExternal() {
@@ -65,5 +70,18 @@ void _setupHomeFeature() {
   );
   injector.registerLazySingleton<HomeRemoteDatasource>(
     () => HomeRemoteDatasourceImpl(service: injector<FirebaseStoreService>()),
+  );
+}
+
+void _setupOrderFeature() {
+  injector.registerFactory<OrderCubit>(
+    () => OrderCubit(injector<OrderRepo>()),
+  );
+  injector.registerLazySingleton<OrderRepo>(
+    () => OrderRepoImpl(datasource: injector<OrderRemoteDatasource>()),
+  );
+
+  injector.registerLazySingleton<OrderRemoteDatasource>(
+    () => OrderRemoteDatasourceImpl(service: injector<FirebaseStoreService>()),
   );
 }

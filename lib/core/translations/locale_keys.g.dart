@@ -101,5 +101,7 @@ abstract class  LocaleKeys {
   static const order_now = 'order_now';
   static const you_can_choose_multiple_service = 'you_can_choose_multiple_service';
   static const order_and_enjoy_with_our_service = 'order_and_enjoy_with_our_service';
+  static const choose_your_type = 'choose_your_type';
+  static const field_is_required = 'field_is_required';
 
 }
