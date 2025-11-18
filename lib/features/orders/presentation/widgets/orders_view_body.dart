@@ -30,7 +30,7 @@ class OrdersViewBody extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (_, _) => const Gap(16),
-                itemCount: 5,
+                itemCount: dummyOrders.length,
               ),
             );
 

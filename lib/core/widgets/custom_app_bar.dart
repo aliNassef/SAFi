@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/translations/locale_keys.g.dart';
-import '../../../../core/utils/utils.dart';
+import '../translations/locale_keys.g.dart';
+import '../utils/utils.dart';
 
-class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
     super.key,
   });
 

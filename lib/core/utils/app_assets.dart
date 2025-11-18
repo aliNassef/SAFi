@@ -28,4 +28,5 @@ abstract class AppAssets {
   static const String logo_image = 'assets/images/logo_image.png';
   static const String login = 'assets/images/login.png';
   static const String home_banner_image = 'assets/images/home_banner_image.png';
+  static const String subscribtion_image = 'assets/images/subscription.png';
 }

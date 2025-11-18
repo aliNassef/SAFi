@@ -4,6 +4,9 @@ import 'package:safi/features/orders/data/datasource/order_remote_datasource.dar
 import 'package:safi/features/orders/data/repo/order_repo.dart';
 import 'package:safi/features/orders/data/repo/order_repo_impl.dart';
 import 'package:safi/features/orders/presentation/controller/order_cubit/order_cubit.dart';
+import 'package:safi/features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
+import 'package:safi/features/subscribtion/data/repo/subscribtion_repo.dart';
+import 'package:safi/features/subscribtion/presentation/controller/subscribtion_cubit/subscribtion_cubit.dart';
 
 import '../../features/auth/data/datasource/auth_remote_datasource.dart';
 import '../../features/auth/data/repo/auth_repo.dart';
@@ -13,6 +16,7 @@ import '../../features/home/data/repo/home_repo.dart';
 import '../../features/home/data/repo/home_repo_impl.dart';
 import '../../features/home/presentation/controller/get_pricies_service_cubit/get_pricies_service_cubit.dart';
 import '../../features/home/presentation/controller/get_services_cubit/get_services_cubit.dart';
+import '../../features/subscribtion/data/repo/subscribtion_repo_impl.dart';
 import '../helpers/cache_helper.dart';
 import '../services/firebase_auth_service.dart';
 import '../services/firebase_firestore_service.dart';
@@ -24,6 +28,7 @@ Future<void> setupServiceLocator() async {
   _setupAuthFeature();
   _setupHomeFeature();
   _setupOrderFeature();
+  _setupSubscribtionFeature();
 }
 
 void _setupExternal() {
@@ -83,5 +88,23 @@ void _setupOrderFeature() {
 
   injector.registerLazySingleton<OrderRemoteDatasource>(
     () => OrderRemoteDatasourceImpl(service: injector<FirebaseStoreService>()),
+  );
+}
+
+void _setupSubscribtionFeature() {
+  injector.registerFactory<SubscribtionCubit>(
+    () => SubscribtionCubit(injector()),
+  );
+
+  injector.registerLazySingleton<SubscribtionRepo>(
+    () => SubscribtionRepoImpl(
+      datasource: injector<SubscribtionRemoteDatasource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<SubscribtionRemoteDatasource>(
+    () => SubscribtionRemoteDatasourceImpl(
+      service: injector<FirebaseStoreService>(),
+    ),
   );
 }

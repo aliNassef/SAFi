@@ -6,6 +6,7 @@ import '../../../../core/translations/locale_keys.g.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../orders/presentation/views/orders_view.dart';
+import '../../../subscribtion/presentation/view/subscribtion_view.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});
@@ -65,7 +66,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
         ),
         PersistentTabConfig(
-          screen: Container(),
+          screen: const SubscribtionView(),
           item: ItemConfig(
             icon: SizedBox.square(
               dimension: activeIconSize,
