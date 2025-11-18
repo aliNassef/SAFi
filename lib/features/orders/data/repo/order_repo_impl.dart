@@ -15,8 +15,18 @@ class OrderRepoImpl extends OrderRepo {
   @override
   Future<Either<Failure, void>> createorder(OrdersModel order) async {
     try {
-      await _datasource.createorder(order);
+      await _datasource.createOrder(order);
       return right(null);
+    } catch (e) {
+      return left(Failure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<OrdersModel>>> getOrders(String userId) async {
+    try {
+      final orders = await _datasource.getOrders(userId);
+      return right(orders);
     } catch (e) {
       return left(Failure(errMessage: e.toString()));
     }

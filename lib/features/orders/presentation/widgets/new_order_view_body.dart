@@ -19,15 +19,15 @@ import '../controller/order_cubit/order_cubit.dart';
 import 'my_order_card_item.dart';
 import 'total_price_card.dart';
 
-class OrderViewBody extends StatefulWidget {
-  const OrderViewBody({super.key, required this.instance});
+class NewOrderViewBody extends StatefulWidget {
+  const NewOrderViewBody({super.key, required this.instance});
   final PriceArgsModel instance;
 
   @override
-  State<OrderViewBody> createState() => _OrderViewBodyState();
+  State<NewOrderViewBody> createState() => _NewOrderViewBodyState();
 }
 
-class _OrderViewBodyState extends State<OrderViewBody> {
+class _NewOrderViewBodyState extends State<NewOrderViewBody> {
   late TextEditingController _phoneNumber;
   late TextEditingController _address;
   late TextEditingController _paymentMethod;

@@ -112,11 +112,15 @@ class FirebaseStoreService {
         );
   }
 
-  Future<QuerySnapshot> getUserOrders(String userId) async {
-    return await _firestore
+  Future<List<OrdersModel>> getUserOrders(String userId) async {
+    final snapshot = await _firestore
         .collection('orders')
         .where('userId', isEqualTo: userId)
         .get();
+
+    return snapshot.docs
+        .map((doc) => OrdersModel.fromJson(doc.data()))
+        .toList();
   }
 
   Future<void> updateOrderStatus(String orderId, String status) async {

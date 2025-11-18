@@ -8,7 +8,7 @@ import '../../../../core/navigation/nav_animation_enum.dart';
 import '../../../../core/navigation/nav_args.dart';
 import '../../data/model/price_args_model.dart';
 import '../controller/get_services_cubit/get_services_cubit.dart';
-import '../../../orders/presentation/views/orders_view.dart';
+import '../../../orders/presentation/views/new_orders_view.dart';
 import '../../../../core/extensions/mediaquery_size.dart';
 import '../../../../core/extensions/padding_extension.dart';
 import '../../../../core/translations/locale_keys.g.dart';
@@ -81,7 +81,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void _goToOrderScreent(BuildContext context, PriceArgsModel pricies) {
     AppNavigation.pushNamed(
       context,
-      OrdersView.routeName,
+      NewOrdersView.routeName,
       arguments: NavArgs(
         animation: NavAnimation.fade,
         data: pricies,

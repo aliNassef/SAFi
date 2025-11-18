@@ -5,6 +5,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import '../../../../core/translations/locale_keys.g.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../home/presentation/views/home_view.dart';
+import '../../../orders/presentation/views/orders_view.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});
@@ -43,7 +44,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
         ),
         PersistentTabConfig(
-          screen: Container(),
+          screen: const OrdersView(),
           item: ItemConfig(
             icon: SizedBox.square(
               dimension: activeIconSize,

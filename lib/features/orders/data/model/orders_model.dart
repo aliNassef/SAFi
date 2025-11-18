@@ -24,7 +24,6 @@ class OrdersModel {
     this.status = OrderStatusEnum.pendding,
   });
 
-
   OrdersModel copyWith({
     String? userId,
     String? serviceId,
@@ -51,7 +50,9 @@ class OrdersModel {
     return OrdersModel(
       userId: json['userId'],
       serviceId: json['serviceId'],
-      orders: List<PriciesServiceModel>.from(json['orders']?.map((x) => PriciesServiceModel.fromJson(x))),
+      orders: List<PriciesServiceModel>.from(
+        json['orders']?.map((x) => PriciesServiceModel.fromJson(x)),
+      ),
       total: json['total'],
       paymentMethod: json['paymentMethod'],
       address: json['address'],
@@ -81,27 +82,69 @@ class OrdersModel {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is OrdersModel &&
-      other.userId == userId &&
-      other.serviceId == serviceId &&
-      listEquals(other.orders, orders) &&
-      other.total == total &&
-      other.paymentMethod == paymentMethod &&
-      other.address == address &&
-      other.notes == notes &&
-      other.status == status;
+        other.userId == userId &&
+        other.serviceId == serviceId &&
+        listEquals(other.orders, orders) &&
+        other.total == total &&
+        other.paymentMethod == paymentMethod &&
+        other.address == address &&
+        other.notes == notes &&
+        other.status == status;
   }
 
   @override
   int get hashCode {
     return userId.hashCode ^
-      serviceId.hashCode ^
-      orders.hashCode ^
-      total.hashCode ^
-      paymentMethod.hashCode ^
-      address.hashCode ^
-      notes.hashCode ^
-      status.hashCode;
+        serviceId.hashCode ^
+        orders.hashCode ^
+        total.hashCode ^
+        paymentMethod.hashCode ^
+        address.hashCode ^
+        notes.hashCode ^
+        status.hashCode;
   }
 }
+
+List<OrdersModel> dummyOrders = [
+  OrdersModel(
+    userId: 'user1',
+    serviceId: 'service1',
+    orders: dummyPriciesServiceModel.sublist(0, 3), // أول 3 items
+    total: dummyPriciesServiceModel
+        .sublist(0, 3)
+        .map((e) => e.totalPrice)
+        .reduce((a, b) => a + b)
+        .toInt(),
+    paymentMethod: 'Cash',
+    address: '123 Street, Cairo',
+    status: OrderStatusEnum.pendding,
+  ),
+  OrdersModel(
+    userId: 'user2',
+    serviceId: 'service2',
+    orders: dummyPriciesServiceModel.sublist(3, 6), // 3 items تانية
+    total: dummyPriciesServiceModel
+        .sublist(3, 6)
+        .map((e) => e.totalPrice)
+        .reduce((a, b) => a + b)
+        .toInt(),
+    paymentMethod: 'Visa',
+    address: '456 Street, Giza',
+    status: OrderStatusEnum.accepted,
+  ),
+  OrdersModel(
+    userId: 'user3',
+    serviceId: 'service3',
+    orders: dummyPriciesServiceModel.sublist(6, 9), // آخر 3 items
+    total: dummyPriciesServiceModel
+        .sublist(6, 9)
+        .map((e) => e.totalPrice)
+        .reduce((a, b) => a + b)
+        .toInt(),
+    paymentMethod: 'Cash',
+    address: '789 Street, Alexandria',
+    status: OrderStatusEnum.accepted,
+  ),
+];

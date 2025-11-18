@@ -8,7 +8,7 @@ import '../../features/home/presentation/controller/get_pricies_service_cubit/ge
 import '../../features/home/presentation/views/pricies_view.dart';
 import '../../features/layout/presentation/views/layout_vieew.dart';
 import '../../features/onboarding/presentation/view/on_boarding_view.dart';
-import '../../features/orders/presentation/views/orders_view.dart';
+import '../../features/orders/presentation/views/new_orders_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 import '../di/service_locator.dart';
 import 'nav_animation_enum.dart';
@@ -53,9 +53,9 @@ class AppRouter {
         );
         break;
       //? orders
-      case OrdersView.routeName:
+      case NewOrdersView.routeName:
         final args = settings.arguments as NavArgs;
-        page = OrdersView(
+        page = NewOrdersView(
           priceArgs: args.data as PriceArgsModel,
         );
         break;
