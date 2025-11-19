@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:safi/features/auth/presentation/controller/auth_cubit.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
 import '../../data/model/orders_model.dart';
@@ -38,18 +39,28 @@ class OrdersViewBody extends StatelessWidget {
           case OrderFailure(:final errMessage):
             return CustomFailureWidget(meesage: errMessage);
           case GetOrderSuccess(:final orders):
-            return ListView.separated(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppConstants.kHorizontalPadding,
-                vertical: AppConstants.kHorizontalPadding,
-              ),
-              itemBuilder: (_, index) {
-                return OrderCardItem(
-                  order: orders[index],
-                );
+            return RefreshIndicator(
+              onRefresh: () async {
+                final userId = context
+                    .read<AuthCubit>()
+                    .getCurrentUser()!
+                    .phoneNumber;
+                context.read<OrderCubit>().getOrders(userId!);
               },
-              separatorBuilder: (_, _) => const Gap(16),
-              itemCount: orders.length,
+              child: ListView.separated(
+                physics: const AlwaysScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.kHorizontalPadding,
+                  vertical: AppConstants.kHorizontalPadding,
+                ),
+                itemBuilder: (_, index) {
+                  return OrderCardItem(
+                    order: orders[index],
+                  );
+                },
+                separatorBuilder: (_, _) => const Gap(16),
+                itemCount: orders.length,
+              ),
             );
           default:
             return const SizedBox.shrink();
