@@ -6,8 +6,7 @@ import 'core/utils/app_initializer.dart';
 import 'safi_app.dart';
 
 void main() async {
-  AppInitializer.init();
-
+  await AppInitializer.init();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

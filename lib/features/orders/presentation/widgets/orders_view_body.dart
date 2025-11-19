@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:safi/core/utils/app_constants.dart';
-import 'package:safi/core/widgets/custom_failure_widget.dart';
-import 'package:safi/features/orders/data/model/orders_model.dart';
-import 'package:safi/features/orders/presentation/controller/order_cubit/order_cubit.dart';
+import '../../../../core/utils/app_constants.dart';
+import '../../../../core/widgets/custom_failure_widget.dart';
+import '../../data/model/orders_model.dart';
+import '../controller/order_cubit/order_cubit.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'order_card_item.dart';
 

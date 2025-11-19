@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:safi/core/extensions/padding_extension.dart';
+import '../../../../core/extensions/padding_extension.dart';
 
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/utils.dart';

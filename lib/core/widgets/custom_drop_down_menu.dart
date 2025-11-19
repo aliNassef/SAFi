@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:safi/core/utils/utils.dart';
-import 'package:safi/core/widgets/widgets.dart';
+import '../utils/utils.dart';
+import 'widgets.dart';
 
 import '../translations/locale_keys.g.dart';
 

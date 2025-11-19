@@ -29,8 +29,9 @@ final class SubscribtionLoaded extends SubscribtionState {
 
 final class UpdateSubscribtionPage extends SubscribtionState {
   final int index;
-
-  const UpdateSubscribtionPage({required this.index});
+  const UpdateSubscribtionPage({
+    required this.index,
+  });
   @override
   List<Object> get props => [index];
 }

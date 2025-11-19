@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:safi/core/errors/failure.dart';
-import 'package:safi/features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
-import 'package:safi/features/subscribtion/data/models/subscribtion_model.dart';
-import 'package:safi/features/subscribtion/data/repo/subscribtion_repo.dart';
+import '../../../../core/errors/failure.dart';
+import '../datasource/subscribtion_remote_datasource.dart';
+import '../models/subscribtion_model.dart';
+import 'subscribtion_repo.dart';
 
 class SubscribtionRepoImpl extends SubscribtionRepo {
   final SubscribtionRemoteDatasource _datasource;

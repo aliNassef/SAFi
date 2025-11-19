@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:safi/core/di/service_locator.dart';
-import 'package:safi/core/extensions/padding_extension.dart';
-import 'package:safi/core/utils/app_constants.dart';
-import 'package:safi/features/subscribtion/presentation/controller/subscribtion_cubit/subscribtion_cubit.dart';
+import '../../../../core/di/service_locator.dart';
+import '../../../../core/extensions/padding_extension.dart';
+import '../../../../core/utils/app_constants.dart';
+import '../controller/subscribtion_cubit/subscribtion_cubit.dart';
 
 import '../../../../core/widgets/custom_app_bar.dart';
 import '../widgets/subscribtion_view_body.dart';

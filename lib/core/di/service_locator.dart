@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:safi/features/orders/data/datasource/order_remote_datasource.dart';
-import 'package:safi/features/orders/data/repo/order_repo.dart';
-import 'package:safi/features/orders/data/repo/order_repo_impl.dart';
-import 'package:safi/features/orders/presentation/controller/order_cubit/order_cubit.dart';
-import 'package:safi/features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
-import 'package:safi/features/subscribtion/data/repo/subscribtion_repo.dart';
-import 'package:safi/features/subscribtion/presentation/controller/subscribtion_cubit/subscribtion_cubit.dart';
+import '../../features/orders/data/datasource/order_remote_datasource.dart';
+import '../../features/orders/data/repo/order_repo.dart';
+import '../../features/orders/data/repo/order_repo_impl.dart';
+import '../../features/orders/presentation/controller/order_cubit/order_cubit.dart';
+import '../../features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
+import '../../features/subscribtion/data/repo/subscribtion_repo.dart';
+import '../../features/subscribtion/presentation/controller/subscribtion_cubit/subscribtion_cubit.dart';
 
 import '../../features/auth/data/datasource/auth_remote_datasource.dart';
 import '../../features/auth/data/repo/auth_repo.dart';

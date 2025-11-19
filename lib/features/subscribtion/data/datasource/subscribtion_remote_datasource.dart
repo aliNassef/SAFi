@@ -1,5 +1,5 @@
-import 'package:safi/core/services/firebase_firestore_service.dart';
-import 'package:safi/features/subscribtion/data/models/subscribtion_model.dart';
+import '../../../../core/services/firebase_firestore_service.dart';
+import '../models/subscribtion_model.dart';
 
 abstract class SubscribtionRemoteDatasource {
   Future<List<SubscribtionModel>> getAllSubscribtions();
@@ -12,7 +12,7 @@ class SubscribtionRemoteDatasourceImpl extends SubscribtionRemoteDatasource {
     : _service = service;
   @override
   Future<List<SubscribtionModel>> getAllSubscribtions() async {
-    final response = await _service.getAllServices();
+    final response = await _service.getAllSubscriptions();
     final subscribtions = response.docs
         .map(
           (sub) =>

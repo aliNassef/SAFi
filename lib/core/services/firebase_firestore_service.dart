@@ -42,7 +42,7 @@ class FirebaseStoreService {
       'name': name,
       'price': price,
       'washesIncluded': washesIncluded,
-      'washesUsed': washesUsed,
+      'advantages': washesUsed,
       'active': true,
       'createdAt': FieldValue.serverTimestamp(),
     });

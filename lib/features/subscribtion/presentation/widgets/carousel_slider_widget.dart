@@ -2,16 +2,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gap/gap.dart';
-import 'package:safi/core/extensions/mediaquery_size.dart';
-import 'package:safi/core/translations/locale_keys.g.dart';
-import 'package:safi/core/widgets/default_app_button.dart';
-import 'package:safi/features/subscribtion/data/models/subscribtion_model.dart';
+import 'package:safi/core/extensions/padding_extension.dart';
+import 'package:safi/core/utils/app_constants.dart';
+import '../../../../core/extensions/mediaquery_size.dart';
+import '../../../../core/translations/locale_keys.g.dart';
+import '../../../../core/widgets/default_app_button.dart';
+import '../../data/models/subscribtion_model.dart';
 
 import '../../../../core/utils/utils.dart';
 
 class CarouselSliderWidget extends StatelessWidget {
-  const CarouselSliderWidget({super.key, this.onPageChanged, required this.instance});
+  const CarouselSliderWidget({
+    super.key,
+    this.onPageChanged,
+    required this.instance,
+    required this.itemCount,
+    this.backgroundColor = AppColors.primary,
+  });
   final SubscribtionModel instance;
+  final int itemCount;
+  final Color backgroundColor;
   final dynamic Function(int, CarouselPageChangedReason)? onPageChanged;
   @override
   Widget build(BuildContext context) {
@@ -27,12 +37,12 @@ class CarouselSliderWidget extends StatelessWidget {
         enlargeFactor: 1,
         scrollDirection: Axis.horizontal,
       ),
-      itemCount: 4,
+      itemCount: itemCount,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
           Container(
             width: context.width,
             decoration: BoxDecoration(
-              color: AppColors.primary,
+              color: backgroundColor,
               borderRadius: BorderRadius.circular(15),
             ),
             child: SingleChildScrollView(
@@ -43,16 +53,15 @@ class CarouselSliderWidget extends StatelessWidget {
                     AppAssets.subscribtion_image,
                     width: context.width * 0.5,
                   ),
-
                   Text(
-                    'data',
+                    instance.name,
                     style: context.appTheme.semiBold20.copyWith(
                       color: AppColors.light,
                     ),
                   ),
                   const Gap(8),
                   Text(
-                    '10000.0 د.ع.',
+                    '${instance.price} جم',
                     style: context.appTheme.semiBold20.copyWith(
                       color: AppColors.light,
                     ),
@@ -64,11 +73,25 @@ class CarouselSliderWidget extends StatelessWidget {
                     color: const Color(0xff585454).withValues(alpha: 0.51),
                   ),
                   const Gap(20),
-
+                  ...instance.advantages.map(
+                    (e) => Row(
+                      children: [
+                        Text(
+                          '● $e',
+                          style: context.appTheme.semiBold16.copyWith(
+                            color: AppColors.white,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ],
+                    ).withHorizontalPadding(AppConstants.kHorizontalPadding),
+                  ),
+                  Gap(context.height * 0.13),
                   DefaultAppButton(
+                    borderColor: Colors.transparent,
                     padding: context.width * 0.02,
                     text: LocaleKeys.buy_now.tr(),
-                    textColor: AppColors.primary,
+                    textColor: backgroundColor,
                     backgroundColor: AppColors.white,
                   ),
                   const Gap(10),
