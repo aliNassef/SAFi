@@ -23,6 +23,7 @@ class OrdersViewBody extends StatelessWidget {
           case OrderLoading():
             return Skeletonizer(
               enabled: true,
+              containersColor: Colors.grey.shade300,
               child: ListView.separated(
                 itemBuilder: (_, index) {
                   return OrderCardItem(

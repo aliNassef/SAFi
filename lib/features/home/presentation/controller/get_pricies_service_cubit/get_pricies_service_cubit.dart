@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+
 import '../../../data/model/pricies_service_model.dart';
 import '../../../data/repo/home_repo.dart';
 
