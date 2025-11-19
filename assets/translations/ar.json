@@ -98,6 +98,12 @@
     "you_can_choose_multiple_service" : "يمكنك اختيار اكثر من خدمة",
     "order_and_enjoy_with_our_service" : "اطلب خدماتنا واستمتع بما يميزنا",
     "choose_your_type" : "حدد النوع",
-    "field_is_required" : "هذا الحقل مطلوب"
+    "field_is_required" : "هذا الحقل مطلوب",
+    "duration" : "المده",
+    "advantages" : "الخدمات",
+    "washes" : "غسله",
+    "subscriped_done" : "تم الاشتراك بنجاح",
+    "package_used" : "تم استهلاك",
+    "from_package" : "من الباقه"
   } 
   

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:safi/features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/orders/data/model/orders_model.dart';
 
 class FirebaseStoreService {
@@ -28,12 +29,20 @@ class FirebaseStoreService {
     await _firestore.collection('users').doc(userId).update({
       'walletBalance': newBalance,
     });
+
+    await addTransaction(
+      userId: userId,
+      type: 'desposite',
+      amount: newBalance,
+      description: '',
+    );
   }
 
   // ---------- SUBSCRIPTIONS ----------
   Future<void> addSubscription({
     required String id,
     required String name,
+    required List<String> advantages,
     required int price,
     required int washesIncluded,
     int washesUsed = 0,
@@ -42,7 +51,8 @@ class FirebaseStoreService {
       'name': name,
       'price': price,
       'washesIncluded': washesIncluded,
-      'advantages': washesUsed,
+      'advantages': advantages,
+      'washesUsed': washesUsed,
       'active': true,
       'createdAt': FieldValue.serverTimestamp(),
     });
@@ -52,10 +62,91 @@ class FirebaseStoreService {
     return await _firestore.collection('subscriptions').get();
   }
 
-  Future<void> updateUsage(String id, int used) async {
-    await _firestore.collection('subscriptions').doc(id).update({
-      'washesUsed': used,
+  Future<SubscribtionModel?> getUserPackage(String userId) async {
+    final snapshot = await _firestore
+        .collection('users')
+        .doc(userId)
+        .collection('subscriptions')
+        .where('active', isEqualTo: true)
+        .limit(1)
+        .get();
+
+    if (snapshot.docs.isEmpty) return null;
+    return SubscribtionModel.fromJson(snapshot.docs.first.data());
+  }
+
+  Future<void> useWash({
+    required String userId,
+    required String subscriptionId,
+  }) async {
+    final docRef = _firestore
+        .collection('users')
+        .doc(userId)
+        .collection('subscriptions')
+        .doc(subscriptionId);
+
+    final doc = await docRef.get();
+    if (!doc.exists) throw Exception("Subscription not found");
+
+    final data = doc.data()!;
+    final int washesUsed = data['washesUsed'];
+    final int washesIncluded = data['washesIncluded'];
+
+    final newWashesUsed = washesUsed + 1;
+
+    final bool isActive = newWashesUsed < washesIncluded;
+
+    await docRef.update({
+      'washesUsed': newWashesUsed,
+      'active': isActive,
     });
+  }
+
+  Future<void> subscribeUser({
+    required String userId,
+    required String name,
+    required List<String> advantages,
+    required int price,
+    required int washesIncluded,
+  }) async {
+    try {
+      final userDoc = await _firestore.collection('users').doc(userId).get();
+      if (!userDoc.exists) throw Exception("User not found");
+
+      final currentBalance = userDoc['walletBalance'] as int;
+
+      if (currentBalance < price) {
+        throw Exception("رصيد المحفظة غير كافي للاشتراك");
+      }
+
+      await updateWallet(userId, currentBalance - price);
+
+      await addTransaction(
+        userId: userId,
+        type: 'subscription',
+        amount: price,
+        description: 'خصم للاشتراك في $name',
+      );
+
+      final docRef = _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('subscriptions')
+          .doc();
+
+      await docRef.set({
+        'id': docRef.id,
+        'name': name,
+        'price': price,
+        'advantages': advantages,
+        'washesIncluded': washesIncluded,
+        'washesUsed': 0,
+        'active': true,
+        'subscribedAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   // ---------- SERVICES ----------

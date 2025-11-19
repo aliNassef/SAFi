@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/home/data/model/price_args_model.dart';
 
 import '../../features/auth/presentation/views/confirm_otp.dart';
@@ -10,6 +11,7 @@ import '../../features/layout/presentation/views/layout_vieew.dart';
 import '../../features/onboarding/presentation/view/on_boarding_view.dart';
 import '../../features/orders/presentation/views/new_orders_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/subscribtion/presentation/view/package_view.dart';
 import '../di/service_locator.dart';
 import 'nav_animation_enum.dart';
 import 'nav_args.dart';
@@ -59,7 +61,13 @@ class AppRouter {
           priceArgs: args.data as PriceArgsModel,
         );
         break;
-
+      //? orders
+      case PackageView.routeName:
+        final args = settings.arguments as NavArgs;
+        page = PackageView(
+          subscriptionModel: args.data as SubscribtionModel,
+        );
+        break;
       default:
         page = const Scaffold(body: Center(child: Text('Page not found')));
     }

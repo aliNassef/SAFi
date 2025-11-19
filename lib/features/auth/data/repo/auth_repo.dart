@@ -33,7 +33,7 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, User>> verifyOtp({
     required String otp,
   }) async {
-    return await _authRemoteDatasource.verifyOtp(
+    return await _authRemoteDatasource.verifyOtpAndCreateUser(
       otp: otp,
     );
   }

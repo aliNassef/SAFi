@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const app_name = 'app_name';
   static const splash_title = 'splash_title';
   static const onboarding_title_1 = 'onboarding_title_1';
@@ -99,9 +99,16 @@ abstract class  LocaleKeys {
   static const no_orders_yet = 'no_orders_yet';
   static const logout = 'logout';
   static const order_now = 'order_now';
-  static const you_can_choose_multiple_service = 'you_can_choose_multiple_service';
-  static const order_and_enjoy_with_our_service = 'order_and_enjoy_with_our_service';
+  static const you_can_choose_multiple_service =
+      'you_can_choose_multiple_service';
+  static const order_and_enjoy_with_our_service =
+      'order_and_enjoy_with_our_service';
   static const choose_your_type = 'choose_your_type';
   static const field_is_required = 'field_is_required';
-
+  static const duration = 'duration';
+  static const advantages = 'advantages';
+  static const washes = 'washes';
+  static const subscriped_done = 'subscriped_done';
+  static const package_used = 'package_used';
+  static const from_package = 'from_package';
 }

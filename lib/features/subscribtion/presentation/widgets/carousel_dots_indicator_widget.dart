@@ -4,24 +4,35 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/utils/utils.dart';
-import '../../data/models/subscribtion_model.dart';
 import '../controller/subscribtion_cubit/subscribtion_cubit.dart';
 
-class CarouselDotsIndicatorWidget extends StatelessWidget {
+class CarouselDotsIndicatorWidget extends StatefulWidget {
   const CarouselDotsIndicatorWidget({
     super.key,
-    required List<SubscribtionModel> subscribtions,
-  }) : _subscribtions = subscribtions;
+  });
 
-  final List<SubscribtionModel> _subscribtions;
+  @override
+  State<CarouselDotsIndicatorWidget> createState() =>
+      _CarouselDotsIndicatorWidgetState();
+}
+
+class _CarouselDotsIndicatorWidgetState
+    extends State<CarouselDotsIndicatorWidget> {
+  int _itemCount = 0;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SubscribtionCubit, SubscribtionState>(
+    return BlocConsumer<SubscribtionCubit, SubscribtionState>(
+      listener: (context, state) {
+        if (state is SubscribtionLoaded) {
+          _itemCount = state.subscribtions.length;
+        }
+      },
       buildWhen: (previous, current) =>
           current is SubscribtionLoading ||
           current is SubscribtionLoaded ||
-          current is UpdateSubscribtionPage,
+          current is UpdateSubscribtionPage ||
+          current is SubscribtionFailure,
       builder: (context, state) {
         if (state is SubscribtionLoading) {
           return Skeletonizer(
@@ -48,14 +59,11 @@ class CarouselDotsIndicatorWidget extends StatelessWidget {
           final position = state is UpdateSubscribtionPage
               ? state.index.toDouble()
               : 0.0;
-          final itemCount = state is SubscribtionLoaded
-              ? state.subscribtions.length
-              : _subscribtions.length;
 
           return Center(
             child: DotsIndicator(
               position: position,
-              dotsCount: itemCount,
+              dotsCount: _itemCount,
               decorator: DotsDecorator(
                 activeSize: const Size(14, 14),
                 size: const Size(14, 14),

@@ -83,7 +83,7 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
             hint: LocaleKeys.payment_options.tr(),
             itemns: [
               PaymentMethodEnum.cash.value,
-              PaymentMethodEnum.visa.value,
+              PaymentMethodEnum.wallet.value,
             ],
           ),
           const Gap(16),

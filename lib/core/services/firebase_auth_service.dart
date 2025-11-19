@@ -25,6 +25,7 @@ class FirebaseAuthService {
         },
         verificationFailed: (FirebaseAuthException e) {
           AppLogger.error('❌ Verification failed: ${e.message}');
+          throw Exception('❌ Verification failed: ${e.message}');
         },
         codeSent: (String verificationId, int? resendToken) {
           _verificationId = verificationId;

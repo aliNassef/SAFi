@@ -3,6 +3,11 @@ import '../models/subscribtion_model.dart';
 
 abstract class SubscribtionRemoteDatasource {
   Future<List<SubscribtionModel>> getAllSubscribtions();
+  Future<SubscribtionModel?> getUserPackage(String userId);
+  Future<void> addSubscripe({
+    required String userId,
+    required SubscribtionModel subscripe,
+  });
 }
 
 class SubscribtionRemoteDatasourceImpl extends SubscribtionRemoteDatasource {
@@ -22,4 +27,20 @@ class SubscribtionRemoteDatasourceImpl extends SubscribtionRemoteDatasource {
 
     return subscribtions;
   }
+
+  @override
+  Future<void> addSubscripe({
+    required String userId,
+    required SubscribtionModel subscripe,
+  }) async => _service.subscribeUser(
+    userId: userId,
+    name: subscripe.name,
+    advantages: subscripe.advantages,
+    price: subscripe.price.toInt(),
+    washesIncluded: subscripe.washesInclude!,
+  );
+
+  @override
+  Future<SubscribtionModel?> getUserPackage(String userId) async =>
+      _service.getUserPackage(userId);
 }

@@ -98,7 +98,12 @@
     "you_can_choose_multiple_service" : "You Can Choose Multiple Service",
     "order_and_enjoy_with_our_service" : "Order And Enjoy With Our Service",
     "choose_your_type" : "choose your type",
-    "field_is_required" : "Field Is Required"
-
-  }
+    "field_is_required" : "Field Is Required",
+    "duration" : "Duration",
+    "advantages" : "advantages",
+    "washes" : "washes"  ,
+    "subscriped_done" : "تم الاشتراك بنجاح",
+    "package_used" : "تم استهلاك",
+    "from_package" : "من الباقه"
+}
   

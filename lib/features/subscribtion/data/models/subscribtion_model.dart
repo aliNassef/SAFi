@@ -4,11 +4,17 @@ class SubscribtionModel {
   final String name;
   final num price;
   final List<String> advantages;
+  final String? id;
+  final int? washesInclude;
+  final int washesUsed;
 
   const SubscribtionModel({
     required this.name,
     required this.price,
     required this.advantages,
+    this.id,
+    this.washesInclude,
+    this.washesUsed = 0,
   });
 
   SubscribtionModel copyWith({
@@ -20,6 +26,9 @@ class SubscribtionModel {
       name: name ?? this.name,
       price: price ?? this.price,
       advantages: advantages ?? this.advantages,
+      id: id,
+      washesUsed: washesUsed,
+      washesInclude: washesInclude,
     );
   }
 
@@ -28,6 +37,9 @@ class SubscribtionModel {
       name: json['name'],
       price: json['price'],
       advantages: List<String>.from(json['advantages']),
+      id: json['id'],
+      washesUsed: json['washesUsed'] ?? 0,
+      washesInclude: json['washesIncluded'],
     );
   }
 
@@ -36,6 +48,9 @@ class SubscribtionModel {
       'name': name,
       'price': price,
       'advantages': advantages,
+      'id': id,
+      'washesUsed': washesUsed,
+      'washesInclude': washesInclude,
     };
   }
 
@@ -50,11 +65,18 @@ class SubscribtionModel {
     return other is SubscribtionModel &&
         other.name == name &&
         other.price == price &&
-        listEquals(other.advantages, advantages);
+        listEquals(other.advantages, advantages) &&
+        other.washesInclude == washesInclude &&
+        other.washesUsed == washesUsed;
   }
 
   @override
-  int get hashCode => name.hashCode ^ price.hashCode ^ advantages.hashCode;
+  int get hashCode =>
+      name.hashCode ^
+      price.hashCode ^
+      advantages.hashCode ^
+      washesUsed.hashCode ^
+      washesInclude.hashCode;
 }
 
 final List<SubscribtionModel> dummySubscriptions = [

@@ -35,3 +35,21 @@ final class UpdateSubscribtionPage extends SubscribtionState {
   @override
   List<Object> get props => [index];
 }
+
+final class GetUserPackageLoading extends SubscribtionState {}
+
+final class GetUserPackageLoaded extends SubscribtionState {
+  final SubscribtionModel? package;
+
+  const GetUserPackageLoaded({this.package});
+  @override
+  List<Object> get props => [];
+}
+
+final class GetUserPackageFailure extends SubscribtionState {
+  final String errMessage;
+
+  const GetUserPackageFailure({required this.errMessage});
+  @override
+  List<Object> get props => [errMessage];
+}

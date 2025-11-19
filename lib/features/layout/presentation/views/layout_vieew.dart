@@ -2,11 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:safi/features/subscribtion/presentation/view/package_subscriped_view.dart';
 import '../../../../core/translations/locale_keys.g.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../home/presentation/views/home_view.dart';
 import '../../../orders/presentation/views/orders_view.dart';
-import '../../../subscribtion/presentation/view/subscribtion_view.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});
@@ -66,7 +66,7 @@ class _LayoutViewState extends State<LayoutView> {
           ),
         ),
         PersistentTabConfig(
-          screen: const SubscribtionView(),
+          screen: const PackageSubscripedView(),
           item: ItemConfig(
             icon: SizedBox.square(
               dimension: activeIconSize,

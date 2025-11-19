@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:safi/features/auth/presentation/controller/auth_cubit.dart';
+import '../../../auth/presentation/controller/auth_cubit.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
 import '../../data/model/orders_model.dart';

@@ -19,4 +19,29 @@ class SubscribtionRepoImpl extends SubscribtionRepo {
       return left(Failure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> addSubscripe({
+    required String userId,
+    required SubscribtionModel subscripe,
+  }) async {
+    try {
+      await _datasource.addSubscripe(userId: userId, subscripe: subscripe);
+      return right(null);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, SubscribtionModel?>> getUserPackage(
+    String userId,
+  ) async {
+    try {
+      final package = await _datasource.getUserPackage(userId);
+      return right(package);
+    } catch (e) {
+      return left(Failure(errMessage: e.toString()));
+    }
+  }
 }

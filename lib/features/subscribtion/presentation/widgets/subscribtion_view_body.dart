@@ -95,7 +95,7 @@ class _SubscribtionViewBodyState extends State<SubscribtionViewBody> {
         ),
         const Gap(30),
 
-        CarouselDotsIndicatorWidget(subscribtions: _subscribtions),
+        const CarouselDotsIndicatorWidget(),
         const Gap(30),
       ],
     );

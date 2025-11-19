@@ -6,6 +6,7 @@ import '../../features/orders/data/repo/order_repo_impl.dart';
 import '../../features/orders/presentation/controller/order_cubit/order_cubit.dart';
 import '../../features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
 import '../../features/subscribtion/data/repo/subscribtion_repo.dart';
+import '../../features/subscribtion/presentation/controller/add_subscription_cubit/add_subscription_cubit.dart';
 import '../../features/subscribtion/presentation/controller/subscribtion_cubit/subscribtion_cubit.dart';
 
 import '../../features/auth/data/datasource/auth_remote_datasource.dart';
@@ -59,6 +60,7 @@ void _setupAuthFeature() {
   injector.registerLazySingleton<AuthRemoteDatasource>(
     () => AuthRemoteDatasourceImpl(
       authService: injector<FirebaseAuthService>(),
+      db: injector<FirebaseStoreService>(),
     ),
   );
 }
@@ -94,6 +96,9 @@ void _setupOrderFeature() {
 void _setupSubscribtionFeature() {
   injector.registerFactory<SubscribtionCubit>(
     () => SubscribtionCubit(injector()),
+  );
+  injector.registerFactory<AddSubscriptionCubit>(
+    () => AddSubscriptionCubit(injector()),
   );
 
   injector.registerLazySingleton<SubscribtionRepo>(

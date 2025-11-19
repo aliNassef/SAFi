@@ -2,6 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:gap/gap.dart';
+import '../../../../core/navigation/app_navigation.dart';
+import '../../../../core/navigation/nav_animation_enum.dart';
+import '../../../../core/navigation/nav_args.dart';
+import '../view/package_view.dart';
 import '../../../../core/extensions/padding_extension.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/extensions/mediaquery_size.dart';
@@ -88,6 +92,7 @@ class CarouselSliderWidget extends StatelessWidget {
                   ),
                   Gap(context.height * 0.13),
                   DefaultAppButton(
+                    onPressed: () => _goToPackageView(context, instance),
                     borderColor: Colors.transparent,
                     padding: context.width * 0.02,
                     text: LocaleKeys.buy_now.tr(),
@@ -99,6 +104,17 @@ class CarouselSliderWidget extends StatelessWidget {
               ),
             ),
           ),
+    );
+  }
+
+  void _goToPackageView(BuildContext context, SubscribtionModel instance) {
+    AppNavigation.pushNamed(
+      context,
+      PackageView.routeName,
+      arguments: NavArgs(
+        data: instance,
+        animation: NavAnimation.fade
+      ),
     );
   }
 }
