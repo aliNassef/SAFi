@@ -31,7 +31,7 @@ class PackageView extends StatelessWidget {
         child:
             BlocProvider(
               create: (context) => injector<AddSubscriptionCubit>(),
-              child: PageViewBody(subscriptionModel: subscriptionModel),
+              child: PackageViewBody(subscriptionModel: subscriptionModel),
             ).withHorizontalPadding(
               AppConstants.kHorizontalPadding,
             ),

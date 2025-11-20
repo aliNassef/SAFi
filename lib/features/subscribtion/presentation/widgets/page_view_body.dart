@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:safi/core/navigation/nav_animation_enum.dart';
+import 'package:safi/core/navigation/nav_args.dart';
+import 'package:safi/features/subscribtion/presentation/view/package_subscriped_view.dart';
 import '../../../../core/navigation/app_navigation.dart';
 import '../../../../core/utils/app_dilagos.dart';
 import '../../../auth/presentation/controller/auth_cubit.dart';
@@ -12,8 +15,8 @@ import '../../../../core/widgets/widgets.dart';
 import '../../data/models/subscribtion_model.dart';
 import 'package_card.dart';
 
-class PageViewBody extends StatelessWidget {
-  const PageViewBody({
+class PackageViewBody extends StatelessWidget {
+  const PackageViewBody({
     super.key,
     required this.subscriptionModel,
   });
@@ -40,7 +43,7 @@ class PageViewBody extends StatelessWidget {
 
               case AddSubscriptionLoaded():
                 AppNavigation.pop(context, useAppRoute: true);
-                AppDilagos.showToast(text: LocaleKeys.subscriped_done.tr());
+                _goToPackageSubscriped(context, subscriptionModel);
                 break;
 
               case AddSubscriptionFailure(:final errMessage):
@@ -63,6 +66,20 @@ class PageViewBody extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  void _goToPackageSubscriped(
+    BuildContext context,
+    SubscribtionModel subscriptionModel,
+  ) {
+    AppNavigation.pushAndRemoveUntil(
+      context,
+      PackageSubscripedView.routeName,
+      (route) => true,
+      arguments: const NavArgs(
+        animation: NavAnimation.fade,
+      ),
     );
   }
 }

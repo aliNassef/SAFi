@@ -11,6 +11,7 @@ import '../../features/layout/presentation/views/layout_vieew.dart';
 import '../../features/onboarding/presentation/view/on_boarding_view.dart';
 import '../../features/orders/presentation/views/new_orders_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
+import '../../features/subscribtion/presentation/view/package_subscriped_view.dart';
 import '../../features/subscribtion/presentation/view/package_view.dart';
 import '../di/service_locator.dart';
 import 'nav_animation_enum.dart';
@@ -67,6 +68,9 @@ class AppRouter {
         page = PackageView(
           subscriptionModel: args.data as SubscribtionModel,
         );
+        break;
+      case PackageSubscripedView.routeName:
+        page = const PackageSubscripedView();
         break;
       default:
         page = const Scaffold(body: Center(child: Text('Page not found')));

@@ -13,7 +13,7 @@ import 'subscribtion_view.dart';
 
 class PackageSubscripedView extends StatelessWidget {
   const PackageSubscripedView({super.key});
-
+  static const routeName = 'PackageSubscripedView';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

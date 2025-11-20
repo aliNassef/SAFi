@@ -13,6 +13,8 @@ import '../di/service_locator.dart';
 import '../helpers/cache_helper.dart';
 import '../logging/app_logger.dart';
 import '../logging/custom_bloc_observer.dart';
+import '../services/fcm_service.dart';
+import '../services/local_notiffication_service.dart';
 import 'app_color.dart';
 
 class AppInitializer {
@@ -32,7 +34,9 @@ class AppInitializer {
           ? HydratedStorageDirectory.web
           : HydratedStorageDirectory((await getTemporaryDirectory()).path),
     );
-
+    await LocalNotificationService.instance.init();
+    await LocalNotificationService.instance.requestPermissions();
+    await FcmService.instance.init();
     await ScreenUtil.ensureScreenSize();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
