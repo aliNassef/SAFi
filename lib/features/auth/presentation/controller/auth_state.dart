@@ -33,3 +33,6 @@ class AuthFailure extends AuthState {
   @override
   List<Object> get props => [errMessage];
 }
+
+
+class AuthLogout extends AuthState {}

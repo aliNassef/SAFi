@@ -12,6 +12,8 @@ abstract class AuthRepo {
     required String otp,
   });
 
+  Future<Either<Failure, void>> logout();
+
   User? getCurrentUser();
 }
 
@@ -40,4 +42,14 @@ class AuthRepoImpl extends AuthRepo {
 
   @override
   User? getCurrentUser() => _authRemoteDatasource.getCurrentUser();
+
+  @override
+  Future<Either<Failure, void>> logout() async {
+    try {
+      await _authRemoteDatasource.logout();
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
+    }
+  }
 }

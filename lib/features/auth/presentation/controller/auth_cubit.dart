@@ -46,4 +46,13 @@ class AuthCubit extends Cubit<AuthState> {
     final user = _authRepo.getCurrentUser();
     return user;
   }
+
+  void logout() async {
+    emit(AuthLoading());
+    final result = await _authRepo.logout();
+    result.fold(
+      (failure) => emit(AuthFailure(errMessage: failure.errMessage)),
+      (_) => emit(AuthLogout()),
+    );
+  }
 }

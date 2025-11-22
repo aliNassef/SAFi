@@ -13,6 +13,7 @@ abstract class AuthRemoteDatasource {
     required String otp,
   });
   User? getCurrentUser();
+  Future<void> logout();
 }
 
 class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
@@ -63,4 +64,7 @@ class AuthRemoteDatasourceImpl extends AuthRemoteDatasource {
       );
     }
   }
+  
+  @override
+  Future<void> logout() async => _authService.signOut();
 }
