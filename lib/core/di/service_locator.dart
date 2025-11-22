@@ -89,7 +89,10 @@ void _setupOrderFeature() {
   );
 
   injector.registerLazySingleton<OrderRemoteDatasource>(
-    () => OrderRemoteDatasourceImpl(service: injector<FirebaseStoreService>()),
+    () => OrderRemoteDatasourceImpl(
+      authService: injector<FirebaseAuthService>(),
+      service: injector<FirebaseStoreService>(),
+    ),
   );
 }
 

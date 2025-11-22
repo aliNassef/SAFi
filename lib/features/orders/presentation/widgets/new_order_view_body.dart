@@ -153,7 +153,7 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
         onPressed: () {
           if (_formkey.currentState!.validate()) {
             var order = OrdersModel(
-              userId: _phoneNumber.text.trim(),
+              phoneNumberId: _phoneNumber.text.trim(),
               serviceId: widget.instance.serviceId,
               orders: widget.instance.data!,
               total: widget.instance.total!.toInt(),

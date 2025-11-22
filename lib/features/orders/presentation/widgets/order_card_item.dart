@@ -112,9 +112,9 @@ class OrderCardItem extends StatelessWidget {
                       ),
                       const Gap(4),
                       Text(
-                        order.userId.length > 8
-                            ? 'User: ${order.userId.substring(0, 8)}...'
-                            : 'User: ${order.userId}',
+                        order.phoneNumberId.length > 8
+                            ? 'User: ${order.phoneNumberId.substring(0, 8)}...'
+                            : 'User: ${order.phoneNumberId}',
                         style: context.appTheme.regular14.copyWith(
                           color: AppColors.deepGrey,
                         ),

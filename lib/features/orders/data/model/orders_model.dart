@@ -5,7 +5,7 @@ import '../../../home/data/model/pricies_service_model.dart';
 import '../../../../core/enums/order_status_enum.dart';
 
 class OrdersModel {
-  final String userId;
+  final String phoneNumberId;
   final String serviceId;
   final List<PriciesServiceModel> orders;
   final int total;
@@ -14,7 +14,7 @@ class OrdersModel {
   final String? notes;
   final OrderStatusEnum status;
   const OrdersModel({
-    required this.userId,
+    required this.phoneNumberId,
     required this.serviceId,
     required this.orders,
     required this.total,
@@ -25,7 +25,7 @@ class OrdersModel {
   });
 
   OrdersModel copyWith({
-    String? userId,
+    String? phoneNumberId,
     String? serviceId,
     List<PriciesServiceModel>? orders,
     int? total,
@@ -35,7 +35,7 @@ class OrdersModel {
     OrderStatusEnum? status,
   }) {
     return OrdersModel(
-      userId: userId ?? this.userId,
+      phoneNumberId: phoneNumberId ?? this.phoneNumberId,
       serviceId: serviceId ?? this.serviceId,
       orders: orders ?? this.orders,
       total: total ?? this.total,
@@ -48,7 +48,7 @@ class OrdersModel {
 
   factory OrdersModel.fromJson(Map<String, dynamic> json) {
     return OrdersModel(
-      userId: json['userId'],
+      phoneNumberId: json['userId'],
       serviceId: json['serviceId'],
       orders: List<PriciesServiceModel>.from(
         json['orders']?.map((x) => PriciesServiceModel.fromJson(x)),
@@ -63,7 +63,7 @@ class OrdersModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'userId': userId,
+      'userId': phoneNumberId,
       'serviceId': serviceId,
       'orders': orders.map((x) => x.toJson()).toList(),
       'total': total,
@@ -76,7 +76,7 @@ class OrdersModel {
 
   @override
   String toString() {
-    return '''OrdersModel(userId: $userId, serviceId: $serviceId, orders: $orders, total: $total, paymentMethod: $paymentMethod, address: $address, notes: $notes, status: $status)''';
+    return '''OrdersModel(userId: $phoneNumberId, serviceId: $serviceId, orders: $orders, total: $total, paymentMethod: $paymentMethod, address: $address, notes: $notes, status: $status)''';
   }
 
   @override
@@ -84,7 +84,7 @@ class OrdersModel {
     if (identical(this, other)) return true;
 
     return other is OrdersModel &&
-        other.userId == userId &&
+        other.phoneNumberId == phoneNumberId &&
         other.serviceId == serviceId &&
         listEquals(other.orders, orders) &&
         other.total == total &&
@@ -96,7 +96,7 @@ class OrdersModel {
 
   @override
   int get hashCode {
-    return userId.hashCode ^
+    return phoneNumberId.hashCode ^
         serviceId.hashCode ^
         orders.hashCode ^
         total.hashCode ^
@@ -109,7 +109,7 @@ class OrdersModel {
 
 List<OrdersModel> dummyOrders = [
   OrdersModel(
-    userId: 'user1',
+    phoneNumberId: 'user1',
     serviceId: 'service1',
     orders: dummyPriciesServiceModel.sublist(0, 3), // أول 3 items
     total: dummyPriciesServiceModel
@@ -122,7 +122,7 @@ List<OrdersModel> dummyOrders = [
     status: OrderStatusEnum.pendding,
   ),
   OrdersModel(
-    userId: 'user2',
+    phoneNumberId: 'user2',
     serviceId: 'service2',
     orders: dummyPriciesServiceModel.sublist(3, 6), // 3 items تانية
     total: dummyPriciesServiceModel
@@ -135,7 +135,7 @@ List<OrdersModel> dummyOrders = [
     status: OrderStatusEnum.accepted,
   ),
   OrdersModel(
-    userId: 'user3',
+    phoneNumberId: 'user3',
     serviceId: 'service3',
     orders: dummyPriciesServiceModel.sublist(6, 9), // آخر 3 items
     total: dummyPriciesServiceModel
