@@ -26,3 +26,21 @@ final class TranscationError extends TranscationState {
   @override
   List<Object> get props => [errMessage];
 }
+
+final class WalletBalanceLoading extends TranscationState {}
+
+final class WalletBalanceLoaded extends TranscationState {
+  final num walletBalance;
+  const WalletBalanceLoaded({required this.walletBalance});
+
+  @override
+  List<Object> get props => [walletBalance];
+}
+
+final class WalletBalanceError extends TranscationState {
+  final String errMessage;
+  const WalletBalanceError({required this.errMessage});
+
+  @override
+  List<Object> get props => [errMessage];
+}

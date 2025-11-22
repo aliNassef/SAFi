@@ -25,4 +25,14 @@ class TransactionRepoImpl implements TransactionRepo {
       return Left(Failure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, num>> getUserWalletBalance(String userId) async {
+    try {
+      final balance = await _remoteDataSource.getUserWalletBalance(userId);
+      return Right(balance);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
+    }
+  }
 }

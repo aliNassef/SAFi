@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
 import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
+import 'package:safi/features/transactions/presentations/widgets/all_transaction_view.dart';
 import '../../features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/home/data/model/price_args_model.dart';
 
@@ -74,8 +76,18 @@ class AppRouter {
       case WalletBalanceView.routeName:
         page = const WalletBalanceView();
         break;
+
+      //? package subcriped
       case PackageSubscripedView.routeName:
         page = const PackageSubscripedView();
+        break;
+
+      //? all transaction
+      case AllTransactionView.routeName:
+        final args = settings.arguments as NavArgs;
+        page = AllTransactionView(
+          cubit: args.data as TranscationCubit,
+        );
         break;
       default:
         page = const Scaffold(body: Center(child: Text('Page not found')));

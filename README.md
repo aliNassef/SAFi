@@ -1,3 +1,1 @@
-# safi
-
-A new Flutter project.
+# SAFI
