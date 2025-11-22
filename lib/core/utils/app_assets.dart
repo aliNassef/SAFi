@@ -3,6 +3,8 @@
 abstract class AppAssets {
   //? icons
   static const String logo = 'assets/svgs/logo.svg';
+  static const String price_icon = 'assets/svgs/pricie_icon.svg';
+  static const String address_icon = 'assets/svgs/address_icon.svg';
   static const String home_active_icon = 'assets/svgs/home_active_icon.svg';
   static const String home_in_active_icon =
       'assets/svgs/home_in_active_icon.svg';
