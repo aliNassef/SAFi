@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
 import '../../features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/home/data/model/price_args_model.dart';
 
@@ -68,6 +69,10 @@ class AppRouter {
         page = PackageView(
           subscriptionModel: args.data as SubscribtionModel,
         );
+        break;
+      //? wallet balance
+      case WalletBalanceView.routeName:
+        page = const WalletBalanceView();
         break;
       case PackageSubscripedView.routeName:
         page = const PackageSubscripedView();

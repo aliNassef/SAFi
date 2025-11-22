@@ -236,11 +236,20 @@ class FirebaseStoreService {
     });
   }
 
-  Future<QuerySnapshot> getUserTransactions(String userId) async {
-    return await _firestore
+  Future<QuerySnapshot> getUserTransactions(
+    String userId, [
+    int? limit,
+  ]) async {
+    var query = _firestore
         .collection('wallet_transactions')
         .where('userId', isEqualTo: userId)
-        .get();
+        .orderBy('date', descending: true);
+
+    if (limit != null) {
+      query = query.limit(limit);
+    }
+
+    return query.get();
   }
 
   // ---------- NOTIFICATIONS ----------

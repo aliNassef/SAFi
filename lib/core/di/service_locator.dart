@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:safi/features/transactions/data/datasource/transactions_remote_datasource.dart';
+import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
 import '../../features/orders/data/datasource/order_remote_datasource.dart';
 import '../../features/orders/data/repo/order_repo.dart';
 import '../../features/orders/data/repo/order_repo_impl.dart';
@@ -18,6 +20,8 @@ import '../../features/home/data/repo/home_repo_impl.dart';
 import '../../features/home/presentation/controller/get_pricies_service_cubit/get_pricies_service_cubit.dart';
 import '../../features/home/presentation/controller/get_services_cubit/get_services_cubit.dart';
 import '../../features/subscribtion/data/repo/subscribtion_repo_impl.dart';
+import '../../features/transactions/data/repo/transaction_repo.dart';
+import '../../features/transactions/data/repo/transaction_repo_impl.dart';
 import '../helpers/cache_helper.dart';
 import '../services/firebase_auth_service.dart';
 import '../services/firebase_firestore_service.dart';
@@ -30,6 +34,25 @@ Future<void> setupServiceLocator() async {
   _setupHomeFeature();
   _setupOrderFeature();
   _setupSubscribtionFeature();
+  _setupTransactionFeature();
+}
+
+void _setupTransactionFeature() {
+  injector.registerFactory<TranscationCubit>(
+    () => TranscationCubit(injector()),
+  );
+
+  injector.registerLazySingleton<TransactionRepo>(
+    () => TransactionRepoImpl(
+      remoteDataSource: injector<TransactionsRemoteDataSource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<TransactionsRemoteDataSource>(
+    () => TransactionsRemoteDataSourceImpl(
+      service: injector<FirebaseStoreService>(),
+    ),
+  );
 }
 
 void _setupExternal() {

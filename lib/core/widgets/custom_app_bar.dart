@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
 
+import '../navigation/app_navigation.dart';
 import '../translations/locale_keys.g.dart';
 import '../utils/utils.dart';
 
@@ -38,9 +41,15 @@ class CustomAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              AppNavigation.pushNamed(
+                context,
+                WalletBalanceView.routeName,
+                useAppRoute: true,
+              );
+            },
             icon: const Icon(
-              Icons.account_balance_wallet,
+              CupertinoIcons.creditcard_fill,
               color: AppColors.deepGrey,
             ),
           ),

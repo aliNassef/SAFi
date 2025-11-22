@@ -111,4 +111,8 @@ abstract class LocaleKeys {
   static const subscriped_done = 'subscriped_done';
   static const package_used = 'package_used';
   static const from_package = 'from_package';
+  static const transactions = 'transactions';
+  static const withdraw = 'withdraw';
+  static const deposit = 'deposit';
+  static const view_all = 'view_all';
 }

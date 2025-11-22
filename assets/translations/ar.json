@@ -104,6 +104,10 @@
     "washes" : "غسله",
     "subscriped_done" : "تم الاشتراك بنجاح",
     "package_used" : "تم استهلاك",
-    "from_package" : "من الباقه"
+    "from_package" : "من الباقه",
+    "transactions" : "العمليات",
+    "withdraw" : "سحب",
+    "deposit" : "إيداع",
+    "view_all" :  "عرض الكل"
   } 
   
