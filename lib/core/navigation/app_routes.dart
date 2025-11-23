@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:safi/env/env.dart';
 import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
 import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
 import 'package:safi/features/transactions/presentations/widgets/all_transaction_view.dart';
@@ -17,6 +18,7 @@ import '../../features/splash/presentation/views/splash_view.dart';
 import '../../features/subscribtion/presentation/view/package_subscriped_view.dart';
 import '../../features/subscribtion/presentation/view/package_view.dart';
 import '../di/service_locator.dart';
+import '../widgets/paypal_widget.dart';
 import 'nav_animation_enum.dart';
 import 'nav_args.dart';
 
@@ -87,6 +89,15 @@ class AppRouter {
         final args = settings.arguments as NavArgs;
         page = AllTransactionView(
           cubit: args.data as TranscationCubit,
+        );
+        break;
+      //? paypal
+      case PaypalView.routeName:
+        final args = settings.arguments as NavArgs;
+        page = PaypalView(
+          clientId: Env.paypalClientId,
+          secretKey: Env.paypalSecretKey,
+          amount: args.data as double,
         );
         break;
       default:

@@ -18,6 +18,7 @@ import 'package:safi/features/transactions/presentations/widgets/tranaction_list
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/di/service_locator.dart';
+import '../../../../core/widgets/paypal_widget.dart';
 import '../cubit/transcation_cubit.dart';
 import 'all_transaction_view.dart';
 
@@ -99,7 +100,16 @@ class _WalletBalanceViewBodyState extends State<WalletBalanceViewBody> {
               DefaultAppButton(
                 backgroundColor: AppColors.secondary,
                 text: LocaleKeys.deposit.tr(),
-                onPressed: () {},
+                onPressed: () {
+                  AppNavigation.pushNamed(
+                    context,
+                    PaypalView.routeName,
+                    arguments: NavArgs(
+                      animation: NavAnimation.fade,
+                      data: 100.toDouble(),
+                    ),
+                  );
+                },
               ),
             ],
           ),
