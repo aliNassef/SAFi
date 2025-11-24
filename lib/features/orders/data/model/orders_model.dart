@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../../home/data/model/pricies_service_model.dart';
@@ -12,8 +13,9 @@ class OrdersModel {
   final String paymentMethod;
   final String address;
   final String? notes;
+  final DateTime createdAt;
   final OrderStatusEnum status;
-  const OrdersModel({
+  OrdersModel({
     required this.phoneNumberId,
     required this.serviceId,
     required this.orders,
@@ -21,8 +23,9 @@ class OrdersModel {
     required this.paymentMethod,
     required this.address,
     this.notes,
+    DateTime? createdAt,
     this.status = OrderStatusEnum.pendding,
-  });
+  }) : createdAt = createdAt ?? DateTime.now();
 
   OrdersModel copyWith({
     String? phoneNumberId,
@@ -33,6 +36,7 @@ class OrdersModel {
     String? address,
     String? notes,
     OrderStatusEnum? status,
+    DateTime? createdAt,
   }) {
     return OrdersModel(
       phoneNumberId: phoneNumberId ?? this.phoneNumberId,
@@ -43,12 +47,14 @@ class OrdersModel {
       address: address ?? this.address,
       notes: notes ?? this.notes,
       status: status ?? this.status,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
   factory OrdersModel.fromJson(Map<String, dynamic> json) {
     return OrdersModel(
       phoneNumberId: json['userId'],
+      createdAt: (json['createdAt'] as Timestamp?)?.toDate(),
       serviceId: json['serviceId'],
       orders: List<PriciesServiceModel>.from(
         json['orders']?.map((x) => PriciesServiceModel.fromJson(x)),
@@ -71,6 +77,7 @@ class OrdersModel {
       'address': address,
       'notes': notes,
       'status': status.value,
+      'createdAt': createdAt,
     };
   }
 
@@ -91,7 +98,8 @@ class OrdersModel {
         other.paymentMethod == paymentMethod &&
         other.address == address &&
         other.notes == notes &&
-        other.status == status;
+        other.status == status &&
+        other.createdAt == createdAt;
   }
 
   @override
@@ -103,7 +111,8 @@ class OrdersModel {
         paymentMethod.hashCode ^
         address.hashCode ^
         notes.hashCode ^
-        status.hashCode;
+        status.hashCode ^
+        createdAt.hashCode;
   }
 }
 
@@ -119,6 +128,7 @@ List<OrdersModel> dummyOrders = [
         .toInt(),
     paymentMethod: 'Cash',
     address: '123 Street, Cairo',
+    createdAt: DateTime.now(),
     status: OrderStatusEnum.pendding,
   ),
   OrdersModel(

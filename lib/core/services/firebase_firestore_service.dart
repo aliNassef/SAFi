@@ -207,6 +207,7 @@ class FirebaseStoreService {
     final snapshot = await _firestore
         .collection('orders')
         .where('userId', isEqualTo: userId)
+        .orderBy('createdAt', descending: true)
         .get();
 
     return snapshot.docs

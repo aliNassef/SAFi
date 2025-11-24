@@ -1,6 +1,7 @@
 enum PaymentMethodEnum {
   cash,
-  wallet;
+  wallet,
+  package;
 
   String get value {
     switch (this) {
@@ -8,6 +9,8 @@ enum PaymentMethodEnum {
         return 'Cash';
       case PaymentMethodEnum.wallet:
         return 'Wallet';
+      case PaymentMethodEnum.package:
+        return 'Package';
     }
   }
 }

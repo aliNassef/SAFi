@@ -16,10 +16,10 @@ class PackageSubscripedView extends StatelessWidget {
   static const routeName = 'PackageSubscripedView';
   @override
   Widget build(BuildContext context) {
+    final userId = context.read<AuthCubit>().getCurrentUser()?.uid;
     return BlocProvider(
       create: (context) {
         final cubit = injector<SubscribtionCubit>();
-        final userId = context.read<AuthCubit>().getCurrentUser()?.uid;
         if (userId != null) {
           cubit.checkUserPackageOrGetSubscriptions(userId);
         }
@@ -46,13 +46,21 @@ class PackageSubscripedView extends StatelessWidget {
                 child: PackageAppBar(title: LocaleKeys.package_details.tr()),
               ),
               body: SafeArea(
-                child: SingleChildScrollView(
-                  child:
-                      PackageSubscripedViewBody(
-                        package: state.package!,
-                      ).withHorizontalPadding(
-                        AppConstants.kHorizontalPadding,
-                      ),
+                child: RefreshIndicator(
+                  onRefresh: () async {
+                    context
+                        .read<SubscribtionCubit>()
+                        .checkUserPackageOrGetSubscriptions(userId!);
+                  },
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child:
+                        PackageSubscripedViewBody(
+                          package: state.package!,
+                        ).withHorizontalPadding(
+                          AppConstants.kHorizontalPadding,
+                        ),
+                  ),
                 ),
               ),
             );

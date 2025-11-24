@@ -24,17 +24,19 @@ class OrderRemoteDatasourceImpl extends OrderRemoteDatasource {
   Future<void> createOrder(OrdersModel order) async {
     final userId = _authService.currentUser()?.uid;
     if (order.paymentMethod == PaymentMethodEnum.wallet.value) {
-      final userDoc = await _service.getUser(userId!);
-      if (userDoc.exists) {
-        final data = userDoc.data() as Map<String, dynamic>;
-        final int balance = data['walletBalance'];
-        if (balance < order.total) {
-          throw Exception('رصيد المحفظة غير كافي');
-        }
-        await _service.updateWallet(userId, balance - order.total);
-      }
+      await _useWalletForPay(userId, order);
     }
 
+    if (order.paymentMethod == PaymentMethodEnum.package.value) {
+      await _usePackageForPay(userId);
+    }
+
+    return _service.createOrder(
+      order: order,
+    );
+  }
+
+  Future<void> _usePackageForPay(String? userId) async {
     final subscription = await _service.getUserPackage(userId!);
     if (subscription != null && subscription.id != null) {
       await _service.useWash(
@@ -42,10 +44,18 @@ class OrderRemoteDatasourceImpl extends OrderRemoteDatasource {
         subscriptionId: subscription.id!,
       );
     }
+  }
 
-    return _service.createOrder(
-      order: order,
-    );
+  Future<void> _useWalletForPay(String? userId, OrdersModel order) async {
+    final userDoc = await _service.getUser(userId!);
+    if (userDoc.exists) {
+      final data = userDoc.data() as Map<String, dynamic>;
+      final int balance = data['walletBalance'];
+      if (balance < order.total) {
+        throw Exception('رصيد المحفظة غير كافي');
+      }
+      await _service.updateWallet(userId, balance - order.total);
+    }
   }
 
   @override

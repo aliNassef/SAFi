@@ -84,6 +84,7 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
             itemns: [
               PaymentMethodEnum.cash.value,
               PaymentMethodEnum.wallet.value,
+              PaymentMethodEnum.package.value,
             ],
           ),
           const Gap(16),
