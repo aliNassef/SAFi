@@ -3,6 +3,8 @@ import 'package:safi/core/di/service_locator.dart';
 import 'package:safi/core/logging/app_logger.dart';
 import 'package:safi/core/services/firebase_auth_service.dart';
 import 'package:safi/core/services/firebase_firestore_service.dart';
+import 'package:safi/features/notifications/presentations/view/notifications_view.dart';
+import 'package:safi/safi_app.dart';
 
 import 'local_notiffication_service.dart';
 
@@ -14,13 +16,18 @@ class FcmService {
   final FirebaseMessaging _messaging = FirebaseMessaging.instance;
 
   Future<void> init() async {
-    // Request permissions
     await _requestPermissions();
 
+    // Foreground
     FirebaseMessaging.onMessage.listen(_handleMessage);
 
+    // Background
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+    // TERMINATED
+    await _handleInitialMessage();
+
+    // Token
     String? token = await _messaging.getToken();
     AppLogger.info("FCM Token: $token");
   }
@@ -31,26 +38,46 @@ class FcmService {
       badge: true,
       sound: true,
     );
-    AppLogger.info('User granted permission: ${settings.authorizationStatus}');
+    AppLogger.info('Permission: ${settings.authorizationStatus}');
   }
 
-  void _handleMessage(RemoteMessage message) {
-    if (message.notification != null) {
-      _saveNotification(message);
+  // -------------------------
+  // MAIN HANDLER (Foreground + Terminated)
+  // -------------------------
+  void _handleMessage(RemoteMessage message) async {
+    _saveNotification(message);
 
+    // 2) Show local notification
+    if (message.notification != null) {
       LocalNotificationService.instance.showNotification(
         id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
         title: message.notification!.title ?? '',
         body: message.notification!.body ?? '',
       );
     }
+
+    navigatorKey.currentState?.pushNamed(NotificationsView.routeName);
   }
 
+  // -------------------------
+  // For TERMINATED APPS
+  // -------------------------
+  Future<void> _handleInitialMessage() async {
+    final message = await FirebaseMessaging.instance.getInitialMessage();
+
+    if (message != null) {
+      _handleMessage(message);
+    }
+  }
+
+  // -------------------------
+  // Save in Firestore
+  // -------------------------
   void _saveNotification(RemoteMessage message) {
     injector<FirebaseStoreService>().sendNotification(
       userId: injector<FirebaseAuthService>().currentUser()!.uid,
-      title: message.notification!.title ?? '',
-      body: message.notification!.body ?? '',
+      title: message.notification?.title ?? '',
+      body: message.notification?.body ?? '',
     );
   }
 }

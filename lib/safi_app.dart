@@ -9,7 +9,7 @@ import 'core/utils/theme/app_theme.dart';
 import 'core/widgets/widgets.dart';
 import 'features/auth/presentation/controller/auth_cubit.dart';
 import 'features/splash/presentation/views/splash_view.dart';
-
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class SafiApp extends StatelessWidget {
   const SafiApp({super.key});
 
@@ -21,6 +21,7 @@ class SafiApp extends StatelessWidget {
         designSize: AppConstants.designSize,
         minTextAdapt: true,
         builder: (context, child) => MaterialApp(
+          navigatorKey: navigatorKey,
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
