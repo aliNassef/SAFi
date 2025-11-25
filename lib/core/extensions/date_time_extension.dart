@@ -28,4 +28,12 @@ extension DateTimeExtension on DateTime {
 
   /// Subtract days
   DateTime subtractDays(int days) => subtract(Duration(days: days));
+
+  /// Format as HH:MM AM/PM
+  String get toTimeAmPm {
+    final hour12 = hour % 12 == 0 ? 12 : hour % 12;
+    final amPm = hour < 12 ? 'AM' : 'PM';
+    return '${hour12.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $amPm';
+  }
+
 }

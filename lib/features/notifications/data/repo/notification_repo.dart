@@ -6,4 +6,5 @@ import '../../../../core/errors/failure.dart';
 abstract class NotificationRepo {
   Future<Either<Failure, List<NotificationModel>>> getNotifications(String uid);
   Future<Either<Failure, num>> getUnReadCountNotifications(String uid);
+  Future<Either<Failure, void>> markAsRead(String notifId);
 }

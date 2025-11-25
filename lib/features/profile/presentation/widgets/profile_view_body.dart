@@ -6,7 +6,6 @@ import 'package:safi/core/navigation/app_navigation.dart';
 import 'package:safi/core/translations/locale_keys.g.dart';
 import 'package:safi/core/utils/app_dilagos.dart';
 import 'package:safi/core/utils/utils.dart';
-import 'package:safi/core/widgets/default_app_button.dart';
 import 'package:safi/core/widgets/widgets.dart';
 import 'package:safi/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:safi/features/auth/presentation/controller/auth_state.dart';

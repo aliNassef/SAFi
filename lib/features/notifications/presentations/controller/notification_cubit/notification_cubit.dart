@@ -32,4 +32,12 @@ class NotificationCubit extends Cubit<NotificationState> {
       (count) => emit(NotificationUnReadCountSuccess(count: count)),
     );
   }
+
+  void markAsRead(String notifId) async {
+    final result = await _notificationRepo.markAsRead(notifId);
+    result.fold(
+      (failure) => emit(NotificationError(errMessage: failure.errMessage)),
+      (_) => emit(NotificationMarkAsReadSuccess(notifId: notifId)),
+    );
+  }
 }

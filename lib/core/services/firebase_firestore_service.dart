@@ -258,7 +258,7 @@ class FirebaseStoreService {
     required String userId,
     required String title,
     required String body,
-   }) async {
+  }) async {
     await _firestore.collection('notifications').add({
       'userId': userId,
       'title': title,

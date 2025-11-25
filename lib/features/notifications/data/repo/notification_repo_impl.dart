@@ -33,4 +33,17 @@ class NotificationRepoImpl implements NotificationRepo {
       return const Left(Failure(errMessage: 'Failed to get notifications'));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> markAsRead(String notifId) async {
+    try {
+      await remoteDataSource.markAsRead(notifId);
+      return const Right(null);
+    } catch (e) {
+      AppLogger.error(e.toString());
+      return const Left(
+        Failure(errMessage: 'Failed to mark notification as read'),
+      );
+    }
+  }
 }

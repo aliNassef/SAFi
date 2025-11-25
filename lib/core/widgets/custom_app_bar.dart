@@ -74,7 +74,20 @@ class CustomAppBar extends StatelessWidget {
                   builder: (context, state) {
                     if (state is NotificationUnReadCountSuccess) {
                       if (state.count == 0) {
-                        return const Icon(Icons.notifications);
+                        return IconButton(
+                          onPressed: () {
+                            AppNavigation.pushNamed(
+                              context,
+                              NotificationsView.routeName,
+                              useAppRoute: true,
+                              arguments: NavArgs(
+                                animation: NavAnimation.fade,
+                                data: context.read<NotificationCubit>(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.notifications),
+                        );
                       }
                       return IconButton(
                         onPressed: () {

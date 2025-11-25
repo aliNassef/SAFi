@@ -10,6 +10,7 @@ sealed class NotificationState extends Equatable {
 final class NotificationInitial extends NotificationState {}
 
 final class NotificationLoading extends NotificationState {}
+
 final class NotificationUnReadCountLoading extends NotificationState {}
 
 final class NotificationSuccess extends NotificationState {
@@ -36,3 +37,10 @@ final class NotificationUnReadCountSuccess extends NotificationState {
   List<Object> get props => [count];
 }
 
+final class NotificationMarkAsReadSuccess extends NotificationState {
+  final String notifId;
+  const NotificationMarkAsReadSuccess({required this.notifId});
+
+  @override
+  List<Object> get props => [notifId];
+}

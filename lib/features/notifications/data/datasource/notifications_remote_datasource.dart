@@ -4,6 +4,7 @@ import 'package:safi/features/notifications/data/model/notification_model.dart';
 abstract class NotificationsRemoteDataSource {
   Future<List<NotificationModel>> getNotifications(String uid);
   Future<num> getUnReadCountNotifications(String uid);
+  Future<void> markAsRead(String notifId);
 }
 
 class NotificationsRemoteDataSourceImpl
@@ -15,12 +16,13 @@ class NotificationsRemoteDataSourceImpl
   @override
   Future<List<NotificationModel>> getNotifications(String uid) async {
     final res = await _service.getUserNotifications(uid);
-    return res.docs
-        .map(
-          (doc) =>
-              NotificationModel.fromJson(doc.data() as Map<String, dynamic>),
-        )
-        .toList();
+    return res.docs.map(
+      (doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        data['id'] = doc.id;
+        return NotificationModel.fromJson(data);
+      },
+    ).toList();
   }
 
   @override
@@ -31,4 +33,7 @@ class NotificationsRemoteDataSourceImpl
         .length;
     return notiCount;
   }
+
+  @override
+  Future<void> markAsRead(String notifId) async => _service.markAsRead(notifId);
 }
