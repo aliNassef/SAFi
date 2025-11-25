@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:safi/features/notifications/data/datasource/notifications_remote_datasource.dart';
+import 'package:safi/features/notifications/presentations/controller/notification_cubit/notification_cubit.dart';
 import 'package:safi/features/transactions/data/datasource/transactions_remote_datasource.dart';
 import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
+import '../../features/notifications/data/repo/notification_repo.dart';
+import '../../features/notifications/data/repo/notification_repo_impl.dart';
 import '../../features/orders/data/datasource/order_remote_datasource.dart';
 import '../../features/orders/data/repo/order_repo.dart';
 import '../../features/orders/data/repo/order_repo_impl.dart';
@@ -35,6 +39,25 @@ Future<void> setupServiceLocator() async {
   _setupOrderFeature();
   _setupSubscribtionFeature();
   _setupTransactionFeature();
+  _setupNotificationFeature();
+}
+
+void _setupNotificationFeature() {
+  injector.registerFactory<NotificationCubit>(
+    () => NotificationCubit(notificationRepo: injector()),
+  );
+
+  injector.registerLazySingleton<NotificationRepo>(
+    () => NotificationRepoImpl(
+      remoteDataSource: injector<NotificationsRemoteDataSource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<NotificationsRemoteDataSource>(
+    () => NotificationsRemoteDataSourceImpl(
+      service: injector<FirebaseStoreService>(),
+    ),
+  );
 }
 
 void _setupTransactionFeature() {

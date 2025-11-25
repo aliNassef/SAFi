@@ -258,7 +258,7 @@ class FirebaseStoreService {
     required String userId,
     required String title,
     required String body,
-  }) async {
+   }) async {
     await _firestore.collection('notifications').add({
       'userId': userId,
       'title': title,
@@ -272,6 +272,7 @@ class FirebaseStoreService {
     return await _firestore
         .collection('notifications')
         .where('userId', isEqualTo: userId)
+        .orderBy('sentAt', descending: true)
         .get();
   }
 

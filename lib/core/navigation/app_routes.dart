@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:safi/env/env.dart';
+import 'package:safi/features/notifications/presentations/controller/notification_cubit/notification_cubit.dart';
 import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
 import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
 import 'package:safi/features/transactions/presentations/widgets/all_transaction_view.dart';
+import '../../features/notifications/presentations/view/notifications_view.dart';
 import '../../features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/home/data/model/price_args_model.dart';
 
@@ -89,6 +91,13 @@ class AppRouter {
         final args = settings.arguments as NavArgs;
         page = AllTransactionView(
           cubit: args.data as TranscationCubit,
+        );
+        break;
+      //? notifications
+      case NotificationsView.routeName:
+        final args = settings.arguments as NavArgs;
+        page = NotificationsView(
+          cubit: args.data as NotificationCubit,
         );
         break;
       //? paypal

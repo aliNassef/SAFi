@@ -34,6 +34,7 @@ class LocalNotificationService {
       'default_channel',
       'General Notifications',
       importance: Importance.max,
+
       priority: Priority.high,
     );
 
@@ -48,6 +49,7 @@ class LocalNotificationService {
       id,
       title,
       body,
+
       details,
     );
   }

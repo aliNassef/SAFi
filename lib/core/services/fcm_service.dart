@@ -1,5 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:safi/core/di/service_locator.dart';
 import 'package:safi/core/logging/app_logger.dart';
+import 'package:safi/core/services/firebase_auth_service.dart';
+import 'package:safi/core/services/firebase_firestore_service.dart';
 
 import 'local_notiffication_service.dart';
 
@@ -33,12 +36,22 @@ class FcmService {
 
   void _handleMessage(RemoteMessage message) {
     if (message.notification != null) {
+      _saveNotification(message);
+
       LocalNotificationService.instance.showNotification(
         id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
         title: message.notification!.title ?? '',
         body: message.notification!.body ?? '',
       );
     }
+  }
+
+  void _saveNotification(RemoteMessage message) {
+    injector<FirebaseStoreService>().sendNotification(
+      userId: injector<FirebaseAuthService>().currentUser()!.uid,
+      title: message.notification!.title ?? '',
+      body: message.notification!.body ?? '',
+    );
   }
 }
 
