@@ -9,7 +9,7 @@
     "onboarding_quote_2": "Wash and receive without hassle",
     "onboarding_title_3": "Cleanliness, sterilization, and affordable prices",
     "onboarding_subtitle_3": "Best quality at the lowest price! Track your laundry status live in the app",
-    "onboarding_quote_3": "Cleanliness you’ll love, prices you’ll appreciate",
+    "onboarding_quote_3": "Cleanliness you'll love, prices you'll appreciate",
     "next": "Next",
     "login": "Login",
     "phone_number": "Phone Number",
@@ -108,5 +108,9 @@
     "transactions": "Transactions",
     "withdraw": "Withdraw",
     "deposit": "Deposit",
-    "view_all": "View All"
+    "view_all": "View All",
+    "please_enter_an_amount": "Please enter an amount",
+    "please_enter_a_valid_number": "Please enter a valid number",
+    "amount_must_be_greater_than_zero": "Amount must be greater than zero",
+    "current_balance": "Current Balance"
 }

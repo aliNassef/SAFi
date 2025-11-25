@@ -29,6 +29,7 @@ import '../../features/transactions/data/repo/transaction_repo_impl.dart';
 import '../helpers/cache_helper.dart';
 import '../services/firebase_auth_service.dart';
 import '../services/firebase_firestore_service.dart';
+import '../services/stripe_service.dart';
 
 final injector = GetIt.instance;
 
@@ -73,6 +74,7 @@ void _setupTransactionFeature() {
 
   injector.registerLazySingleton<TransactionsRemoteDataSource>(
     () => TransactionsRemoteDataSourceImpl(
+      stripeService: injector<StripeService>(),
       service: injector<FirebaseStoreService>(),
     ),
   );
@@ -88,6 +90,9 @@ void _setupExternal() {
   );
   injector.registerLazySingleton<FirebaseStoreService>(
     () => FirebaseStoreService(),
+  );
+  injector.registerLazySingleton<StripeService>(
+    () => StripeService.instance,
   );
 }
 

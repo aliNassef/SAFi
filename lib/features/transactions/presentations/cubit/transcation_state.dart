@@ -44,3 +44,20 @@ final class WalletBalanceError extends TranscationState {
   @override
   List<Object> get props => [errMessage];
 }
+
+final class MakePaymentLoading extends TranscationState {}
+
+final class MakePaymentLoaded extends TranscationState {
+  const MakePaymentLoaded();
+
+  @override
+  List<Object> get props => [];
+}
+
+final class MakePaymentError extends TranscationState {
+  final String errMessage;
+  const MakePaymentError({required this.errMessage});
+
+  @override
+  List<Object> get props => [errMessage];
+}

@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-
+import '../../env/env.dart';
 import '../../firebase_options.dart';
 import '../di/service_locator.dart';
 import '../helpers/cache_helper.dart';
@@ -38,6 +39,10 @@ class AppInitializer {
     await LocalNotificationService.instance.requestPermissions();
     await FcmService.instance.init();
     await ScreenUtil.ensureScreenSize();
+
+    Stripe.publishableKey = Env.stripePublishKey;
+    await Stripe.instance.applySettings();
+
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
     SystemChrome.setSystemUIOverlayStyle(

@@ -38,6 +38,28 @@ class FirebaseStoreService {
     );
   }
 
+  Future<void> incrementWalletBalance(String userId, num amount) async {
+    // Get current balance
+    final userDoc = await _firestore.collection('users').doc(userId).get();
+    if (!userDoc.exists) throw Exception("User not found");
+
+    final currentBalance = userDoc['walletBalance'] as num;
+    final newBalance = currentBalance + amount;
+
+    // Update wallet balance
+    await _firestore.collection('users').doc(userId).update({
+      'walletBalance': newBalance,
+    });
+
+    // Create transaction record
+    await addTransaction(
+      userId: userId,
+      type: 'deposit',
+      amount: amount.toInt(),
+      description: 'Wallet deposit via Stripe',
+    );
+  }
+
   // ---------- SUBSCRIPTIONS ----------
   Future<void> addSubscription({
     required String id,

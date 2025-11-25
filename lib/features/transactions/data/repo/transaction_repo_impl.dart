@@ -35,4 +35,18 @@ class TransactionRepoImpl implements TransactionRepo {
       return Left(Failure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> makePayment(
+    String userId,
+    String amount,
+    String currency,
+  ) async {
+    try {
+      await _remoteDataSource.makePayment(userId, amount, currency);
+      return const Right(null);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
+    }
+  }
 }
