@@ -37,7 +37,7 @@ class DepositButtonBlocListener extends StatelessWidget {
         backgroundColor: AppColors.secondary,
         text: LocaleKeys.deposit.tr(),
         onPressed: () async {
-          AppBottomSheet.showAmountBottomSheet(
+          AppBottomSheet.showCupertinoActionSheet(
             context,
             title: LocaleKeys.deposit.tr(),
             buttonText: LocaleKeys.deposit.tr(),
