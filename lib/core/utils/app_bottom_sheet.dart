@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:safi/core/enums/lang_enum.dart';
 
+import '../navigation/app_navigation.dart';
 import '../translations/locale_keys.g.dart';
 import '../widgets/widgets.dart';
 
@@ -176,6 +178,38 @@ class AppBottomSheet {
               ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  static Future<void> showLanguageBottomSheet(
+    BuildContext context, {
+    required Function(LangEnum lang) onConfirm,
+  }) {
+    return showCupertinoModalPopup(
+      barrierColor: Colors.black.withValues(alpha: 0.5),
+
+      context: context,
+      builder: (context) {
+        return CupertinoActionSheet(
+          title: const Text('Language'),
+          actions: [
+            CupertinoActionSheetAction(
+              child: const Text('English'),
+              onPressed: () {
+                onConfirm(LangEnum.en);
+                AppNavigation.pop(context);
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: const Text('Arabic'),
+              onPressed: () {
+                onConfirm(LangEnum.ar);
+                AppNavigation.pop(context);
+              },
+            ),
+          ],
         );
       },
     );

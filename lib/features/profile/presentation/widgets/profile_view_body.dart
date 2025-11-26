@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:safi/core/navigation/app_navigation.dart';
+import 'package:safi/core/navigation/nav_animation_enum.dart';
+import 'package:safi/core/navigation/nav_args.dart';
 import 'package:safi/core/translations/locale_keys.g.dart';
 import 'package:safi/core/utils/app_dilagos.dart';
 import 'package:safi/core/utils/utils.dart';
@@ -10,8 +12,9 @@ import 'package:safi/core/widgets/widgets.dart';
 import 'package:safi/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:safi/features/auth/presentation/controller/auth_state.dart';
 import 'package:safi/features/auth/presentation/views/login_view.dart';
-
 import '../../../../core/extensions/mediaquery_size.dart';
+import '../../../../core/utils/app_bottom_sheet.dart';
+import '../../../transactions/presentations/view/wallet_balance_view.dart';
 import 'custom_card_listtile.dart';
 import 'pricies_and_address_row_widget.dart';
 
@@ -40,11 +43,17 @@ class ProfileViewBody extends StatelessWidget {
         ),
         const Gap(10),
         CustomCardListTile(
+          onTap: () => _goToWalletToRecharge(context),
           title: LocaleKeys.recharge_wallet.tr(),
           icon: CupertinoIcons.creditcard,
         ),
         const Gap(10),
         CustomCardListTile(
+          onTap: () => AppBottomSheet.showLanguageBottomSheet(
+            context,
+            onConfirm: (lang) =>
+                EasyLocalization.of(context)!.setLocale(Locale(lang.value)),
+          ),
           title: LocaleKeys.language.tr(),
           icon: CupertinoIcons.globe,
         ),
@@ -93,6 +102,16 @@ class ProfileViewBody extends StatelessWidget {
         ),
         const Gap(30),
       ],
+    );
+  }
+
+  Future<Object?> _goToWalletToRecharge(BuildContext context) {
+    return AppNavigation.pushNamed(
+      context,
+      WalletBalanceView.routeName,
+      arguments: const NavArgs(
+        animation: NavAnimation.fade,
+      ),
     );
   }
 

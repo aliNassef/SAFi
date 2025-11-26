@@ -6,13 +6,16 @@ class CustomCardListTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.icon,
+    this.onTap,
   });
   final String title;
   final IconData icon;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: onTap,
         leading: Icon(
           icon,
           size: 28,
