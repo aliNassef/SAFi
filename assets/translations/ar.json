@@ -112,5 +112,6 @@
   "please_enter_an_amount": "الرجاء إدخال المبلغ",
   "please_enter_a_valid_number": "الرجاء إدخال رقم صحيح",
   "amount_must_be_greater_than_zero": "يجب أن يكون المبلغ أكبر من الصفر",
-  "current_balance": "الرصيد الحالي"
+  "current_balance": "الرصيد الحالي",
+  "pound" : "جنيه"
 }

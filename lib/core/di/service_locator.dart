@@ -10,6 +10,10 @@ import '../../features/orders/data/datasource/order_remote_datasource.dart';
 import '../../features/orders/data/repo/order_repo.dart';
 import '../../features/orders/data/repo/order_repo_impl.dart';
 import '../../features/orders/presentation/controller/order_cubit/order_cubit.dart';
+import '../../features/profile/data/datasource/profile_remote_datasource.dart';
+import '../../features/profile/data/repo/profile_repo.dart';
+import '../../features/profile/data/repo/profile_repo_impl.dart';
+import '../../features/profile/presentation/controller/profile_cubit/profile_cubit.dart';
 import '../../features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
 import '../../features/subscribtion/data/repo/subscribtion_repo.dart';
 import '../../features/subscribtion/presentation/controller/add_subscription_cubit/add_subscription_cubit.dart';
@@ -41,6 +45,25 @@ Future<void> setupServiceLocator() async {
   _setupSubscribtionFeature();
   _setupTransactionFeature();
   _setupNotificationFeature();
+  _setupProfileFeature();
+}
+
+void _setupProfileFeature() {
+  injector.registerFactory<ProfileCubit>(
+    () => ProfileCubit(injector()),
+  );
+
+  injector.registerLazySingleton<ProfileRepo>(
+    () => ProfileRepoImpl(
+      remoteDatasource: injector<ProfileRemoteDatasource>(),
+    ),
+  );
+
+  injector.registerLazySingleton<ProfileRemoteDatasource>(
+    () => ProfileRemoteDatasourceImpl(
+      db: injector<FirebaseStoreService>(),
+    ),
+  );
 }
 
 void _setupNotificationFeature() {

@@ -216,6 +216,39 @@ class FirebaseStoreService {
     }
   }
 
+  Future<List<Map<String, dynamic>>> getAllServicePrices() async {
+    final List<Map<String, dynamic>> allPrices = [];
+
+    try {
+      final servicesSnapshot = await FirebaseFirestore.instance
+          .collection('services')
+          .get();
+
+      for (final serviceDoc in servicesSnapshot.docs) {
+        final serviceId = serviceDoc.id;
+
+        final pricesSnapshot = await FirebaseFirestore.instance
+            .collection('services')
+            .doc(serviceId)
+            .collection('prices')
+            .get();
+
+        final List<Map<String, dynamic>> servicePrices = [];
+        for (final priceDoc in pricesSnapshot.docs) {
+          if (priceDoc.exists) {
+            final priceData = priceDoc.data();
+            servicePrices.add(priceData);
+          }
+        }
+        allPrices.addAll(servicePrices);
+      }
+    } catch (e) {
+      rethrow;
+    }
+
+    return allPrices;
+  }
+
   // ---------- ORDERS ----------
   Future<void> createOrder({required OrdersModel order}) async {
     await _firestore

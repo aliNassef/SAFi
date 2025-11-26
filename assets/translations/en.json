@@ -112,5 +112,6 @@
     "please_enter_an_amount": "Please enter an amount",
     "please_enter_a_valid_number": "Please enter a valid number",
     "amount_must_be_greater_than_zero": "Amount must be greater than zero",
-    "current_balance": "Current Balance"
+    "current_balance": "Current Balance",
+    "pound": "EGP"
 }
