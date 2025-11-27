@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../data/model/price_args_model.dart';
- import '../../../data/model/service_model.dart';
+import '../../../data/model/service_model.dart';
 import '../../../data/repo/home_repo.dart';
 
 part 'get_services_state.dart';
