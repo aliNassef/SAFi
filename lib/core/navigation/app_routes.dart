@@ -8,6 +8,7 @@ import 'package:safi/features/transactions/presentations/view/wallet_balance_vie
 import 'package:safi/features/transactions/presentations/widgets/all_transaction_view.dart';
 import '../../features/notifications/presentations/view/notifications_view.dart';
 import '../../features/profile/presentation/controller/profile_cubit/profile_cubit.dart';
+import '../../features/profile/presentation/view/address_view.dart';
 import '../../features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/home/data/model/price_args_model.dart';
 
@@ -117,6 +118,10 @@ class AppRouter {
         page = AllServiciesPriciesView(
           cubit: args.data as ProfileCubit,
         );
+        break;
+      //? address
+      case AddressView.routeName:
+        page = const AddressView();
         break;
       default:
         page = const Scaffold(body: Center(child: Text('Page not found')));

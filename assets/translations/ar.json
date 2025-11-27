@@ -113,5 +113,6 @@
   "please_enter_a_valid_number": "الرجاء إدخال رقم صحيح",
   "amount_must_be_greater_than_zero": "يجب أن يكون المبلغ أكبر من الصفر",
   "current_balance": "الرصيد الحالي",
-  "pound" : "جنيه"
+  "pound": "جنيه",
+  "search_for_a_building_street_or": "بحث عن بناء، شارع أو ..."
 }

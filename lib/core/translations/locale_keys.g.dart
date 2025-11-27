@@ -121,4 +121,6 @@ abstract class LocaleKeys {
       'amount_must_be_greater_than_zero';
   static const current_balance = 'current_balance';
   static const pound = 'pound';
+  static const search_for_a_building_street_or =
+      'search_for_a_building_street_or';
 }

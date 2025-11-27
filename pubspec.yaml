@@ -45,6 +45,8 @@ dependencies:
   flutter_paypal_payment: ^1.0.8
   flutter_stripe: ^12.1.1
   dio: ^5.9.0
+  google_maps_flutter: ^2.14.0
+  place_picker_google: ^0.0.20
 dev_dependencies:
   flutter_test:
     sdk: flutter

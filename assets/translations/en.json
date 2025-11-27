@@ -113,5 +113,6 @@
     "please_enter_a_valid_number": "Please enter a valid number",
     "amount_must_be_greater_than_zero": "Amount must be greater than zero",
     "current_balance": "Current Balance",
-    "pound": "EGP"
+    "pound": "EGP",
+    "search_for_a_building_street_or": "Search For a building or street ...."
 }

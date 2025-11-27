@@ -13,6 +13,7 @@ import '../../../../core/translations/locale_keys.g.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/utils/utils.dart';
 import '../controller/profile_cubit/profile_cubit.dart';
+import '../view/address_view.dart';
 
 class PriciesAndAddressRowWidget extends StatelessWidget {
   const PriciesAndAddressRowWidget({
@@ -57,24 +58,35 @@ class PriciesAndAddressRowWidget extends StatelessWidget {
         ),
         FadeIn(
           duration: const Duration(milliseconds: 500),
-          child: Card(
-            color: AppColors.white,
-            elevation: 2,
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  AppAssets.address_icon,
-                  width: 28,
-                  height: 33,
+          child: InkWell(
+            onTap: () {
+              AppNavigation.pushNamed(
+                context,
+                AddressView.routeName,
+                arguments: const NavArgs(
+                  animation: NavAnimation.fade,
                 ),
-                Text(
-                  LocaleKeys.address.tr(),
-                  style: context.appTheme.semiBold16.copyWith(
-                    color: const Color(0xff3B3838).withValues(alpha: 0.85),
+              );
+            },
+            child: Card(
+              color: AppColors.white,
+              elevation: 2,
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    AppAssets.address_icon,
+                    width: 28,
+                    height: 33,
                   ),
-                ),
-              ],
-            ).withAllPadding(AppConstants.kHorizontalPadding),
+                  Text(
+                    LocaleKeys.address.tr(),
+                    style: context.appTheme.semiBold16.copyWith(
+                      color: const Color(0xff3B3838).withValues(alpha: 0.85),
+                    ),
+                  ),
+                ],
+              ).withAllPadding(AppConstants.kHorizontalPadding),
+            ),
           ),
         ),
       ],
