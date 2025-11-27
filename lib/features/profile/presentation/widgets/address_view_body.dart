@@ -9,7 +9,7 @@ import 'package:safi/core/utils/app_constants.dart';
 import 'package:safi/env/env.dart';
 import '../../../../core/translations/locale_keys.g.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
-import '../controller/address_cubit/address_cubit.dart';
+ import '../controller/address_cubit/address_cubit.dart';
 import 'user_address_widget.dart';
 
 class AddressViewBody extends StatelessWidget {
