@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:safi/core/services/geolocator_service.dart';
+import 'package:safi/core/services/location_service.dart';
 import 'package:safi/features/notifications/data/datasource/notifications_remote_datasource.dart';
 import 'package:safi/features/notifications/presentations/controller/notification_cubit/notification_cubit.dart';
 import 'package:safi/features/transactions/data/datasource/transactions_remote_datasource.dart';
@@ -13,6 +15,7 @@ import '../../features/orders/presentation/controller/order_cubit/order_cubit.da
 import '../../features/profile/data/datasource/profile_remote_datasource.dart';
 import '../../features/profile/data/repo/profile_repo.dart';
 import '../../features/profile/data/repo/profile_repo_impl.dart';
+import '../../features/profile/presentation/controller/address_cubit/address_cubit.dart';
 import '../../features/profile/presentation/controller/profile_cubit/profile_cubit.dart';
 import '../../features/subscribtion/data/datasource/subscribtion_remote_datasource.dart';
 import '../../features/subscribtion/data/repo/subscribtion_repo.dart';
@@ -52,7 +55,9 @@ void _setupProfileFeature() {
   injector.registerFactory<ProfileCubit>(
     () => ProfileCubit(injector()),
   );
-
+  injector.registerFactory<AddressCubit>(
+    () => AddressCubit(injector()),
+  );
   injector.registerLazySingleton<ProfileRepo>(
     () => ProfileRepoImpl(
       remoteDatasource: injector<ProfileRemoteDatasource>(),
@@ -62,6 +67,7 @@ void _setupProfileFeature() {
   injector.registerLazySingleton<ProfileRemoteDatasource>(
     () => ProfileRemoteDatasourceImpl(
       db: injector<FirebaseStoreService>(),
+      locationService: injector<LocationService>(),
     ),
   );
 }
@@ -116,6 +122,14 @@ void _setupExternal() {
   );
   injector.registerLazySingleton<StripeService>(
     () => StripeService.instance,
+  );
+  injector.registerLazySingleton<LocationService>(
+    () => LocationServiceImpl(
+      geolocatorWrapper: injector<GeolocatorWrapper>(),
+    ),
+  );
+  injector.registerLazySingleton<GeolocatorWrapper>(
+    () => GeolocatorImpl(),
   );
 }
 

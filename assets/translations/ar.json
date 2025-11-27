@@ -114,5 +114,7 @@
   "amount_must_be_greater_than_zero": "يجب أن يكون المبلغ أكبر من الصفر",
   "current_balance": "الرصيد الحالي",
   "pound": "جنيه",
-  "search_for_a_building_street_or": "بحث عن بناء، شارع أو ..."
+  "search_for_a_building_street_or": "بحث عن بناء، شارع أو ...",
+  "update_address": "تحديث العنوان",
+  "your_current_address": "العنوان الحالي"
 }

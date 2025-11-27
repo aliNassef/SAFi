@@ -47,6 +47,7 @@ dependencies:
   dio: ^5.9.0
   google_maps_flutter: ^2.14.0
   place_picker_google: ^0.0.20
+  geolocator: ^14.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
