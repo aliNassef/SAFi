@@ -117,6 +117,7 @@
   "search_for_a_building_street_or": "بحث عن بناء، شارع أو ...",
   "update_address": "تحديث العنوان",
   "your_current_address": "العنوان الحالي",
-  "select_wanted" : "اختر ما تريد",
-  "please_select_service" : "الرجاء اختيار الخدمة"
+  "select_wanted": "اختر ما تريد",
+  "please_select_service": "الرجاء اختيار الخدمة",
+  "no_internet_connection": "لا يوجد اتصال بالإنترنت"
 }

@@ -74,6 +74,9 @@ void _setupTransactionFeature() {
 
 void _setupExternal() {
   injector.registerLazySingleton<CacheHelper>(() => CacheHelper());
+  injector.registerLazySingleton<IternetCheckerCubit>(
+    () => IternetCheckerCubit(),
+  );
   injector.registerLazySingleton<FirebaseAuthService>(
     () => FirebaseAuthService(injector()),
   );

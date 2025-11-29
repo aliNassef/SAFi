@@ -118,5 +118,6 @@
     "update_address": "Update Address",
     "your_current_address": "Your Current Address",
     "select_wanted": "Select What You Want",
-    "please_select_service": "Please Select Service"
+    "please_select_service": "Please Select Service",
+    "no_internet_connection": "No Internet Connection"
 }

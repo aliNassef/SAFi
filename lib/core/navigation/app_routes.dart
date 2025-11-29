@@ -1,31 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:safi/env/env.dart';
-import 'package:safi/features/notifications/presentations/controller/notification_cubit/notification_cubit.dart';
-import 'package:safi/features/profile/presentation/view/all_servicies_pricies_view.dart';
-import 'package:safi/features/transactions/presentations/cubit/transcation_cubit.dart';
-import 'package:safi/features/transactions/presentations/view/wallet_balance_view.dart';
-import 'package:safi/features/transactions/presentations/widgets/all_transaction_view.dart';
-import '../../features/notifications/presentations/view/notifications_view.dart';
-import '../../features/profile/presentation/controller/profile_cubit/profile_cubit.dart';
-import '../../features/profile/presentation/view/address_view.dart';
-import '../../features/subscribtion/data/models/subscribtion_model.dart';
-import '../../features/home/data/model/price_args_model.dart';
-
-import '../../features/auth/presentation/views/confirm_otp.dart';
-import '../../features/auth/presentation/views/login_view.dart';
-import '../../features/home/presentation/controller/get_pricies_service_cubit/get_pricies_service_cubit.dart';
-import '../../features/home/presentation/views/pricies_view.dart';
-import '../../features/layout/presentation/views/layout_vieew.dart';
-import '../../features/onboarding/presentation/view/on_boarding_view.dart';
-import '../../features/orders/presentation/views/new_orders_view.dart';
-import '../../features/splash/presentation/views/splash_view.dart';
-import '../../features/subscribtion/presentation/view/package_subscriped_view.dart';
-import '../../features/subscribtion/presentation/view/package_view.dart';
-import '../di/service_locator.dart';
-import '../widgets/paypal_widget.dart';
+import 'navigation.dart';
 import 'nav_animation_enum.dart';
 import 'nav_args.dart';
+import 'package:flutter/material.dart';
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
