@@ -123,6 +123,7 @@ abstract class LocaleKeys {
   static const pound = 'pound';
   static const update_address = 'update_address';
   static const your_current_address = 'your_current_address';
+  static const select_wanted = 'select_wanted';
   static const search_for_a_building_street_or =
       'search_for_a_building_street_or';
 }

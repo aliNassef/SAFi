@@ -9,7 +9,9 @@ import 'core/utils/theme/app_theme.dart';
 import 'core/widgets/widgets.dart';
 import 'features/auth/presentation/controller/auth_cubit.dart';
 import 'features/splash/presentation/views/splash_view.dart';
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class SafiApp extends StatelessWidget {
   const SafiApp({super.key});
 
@@ -29,6 +31,13 @@ class SafiApp extends StatelessWidget {
           onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
+          builder: (xontext, child) {
+            final MediaQueryData data = MediaQuery.of(xontext);
+            return MediaQuery(
+              data: data.copyWith(textScaler: const TextScaler.linear(1.0)),
+              child: child!,
+            );
+          },
         ),
       ),
     );

@@ -116,5 +116,6 @@
     "pound": "EGP",
     "search_for_a_building_street_or": "Search For a building or street ....",
     "update_address": "Update Address",
-    "your_current_address": "Your Current Address"
+    "your_current_address": "Your Current Address",
+    "select_wanted" : "Select What You Want"
 }

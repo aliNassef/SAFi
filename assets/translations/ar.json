@@ -116,5 +116,6 @@
   "pound": "جنيه",
   "search_for_a_building_street_or": "بحث عن بناء، شارع أو ...",
   "update_address": "تحديث العنوان",
-  "your_current_address": "العنوان الحالي"
+  "your_current_address": "العنوان الحالي",
+  "select_wanted" : "اختر ما تريد"
 }

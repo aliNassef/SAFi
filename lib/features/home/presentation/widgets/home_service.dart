@@ -8,7 +8,7 @@ import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_network_image.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../data/model/service_model.dart';
- import 'check_box_service_bloc_builder.dart';
+import 'check_box_service_bloc_builder.dart';
 
 class HomeService extends StatefulWidget {
   const HomeService({
@@ -75,7 +75,7 @@ class _HomeServiceState extends State<HomeService> {
 
             DefaultAppButton(
               onPressed: widget.onTap,
-              text: LocaleKeys.prices.tr(),
+              text: LocaleKeys.select_wanted.tr(),
               padding: context.width * 0.05,
             ),
             const Gap(10),
