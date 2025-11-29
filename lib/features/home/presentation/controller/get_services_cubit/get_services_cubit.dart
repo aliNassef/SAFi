@@ -10,7 +10,9 @@ class GetServicesCubit extends Cubit<GetServicesState> {
   GetServicesCubit(this._homeRepo) : super(GetServicesInitial());
 
   final HomeRepo _homeRepo;
-
+  PriceArgsModel? selectedPrice;
+  List<ServiceModel> _services = [];
+  String? selectedId;
   void getServices() async {
     emit(GetServicesLoading());
     final servicesOrfailure = await _homeRepo.getAllService();
@@ -18,17 +20,27 @@ class GetServicesCubit extends Cubit<GetServicesState> {
       (failure) => emit(
         GetServicesFailure(errMessage: failure.errMessage),
       ),
-      (services) => emit(
-        GetServicesSuccess(services: services),
+      (services) {
+        _services = services;
+        emit(
+          GetServicesSuccess(services: services),
+        );
+      },
+    );
+  }
+
+  void selectService(String id) {
+    selectedId = id;
+    emit(
+      GetServicesSuccess(
+        services: _services,
+        selectedId: selectedId,
       ),
     );
   }
 
-  void selectService(String id, bool val) {
-    emit(SelectedService(isSelected: val, serviceId: id));
-  }
-
-  void getPriciesList(PriceArgsModel pricies) {
-    emit(GetPriciesServiceSuccess(pricies));
+  void setOrderDetails(PriceArgsModel prices) {
+    selectedPrice = prices;
+    emit(GetPriciesServiceSuccess(prices));
   }
 }

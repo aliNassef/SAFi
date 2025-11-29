@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import '../../../../core/navigation/app_navigation.dart';
 import '../../../../core/navigation/nav_animation_enum.dart';
 import '../../../../core/navigation/nav_args.dart';
+import '../../../../core/utils/app_dilagos.dart';
 import '../../data/model/price_args_model.dart';
 import '../controller/get_services_cubit/get_services_cubit.dart';
 import '../../../orders/presentation/views/new_orders_view.dart';
@@ -54,15 +55,23 @@ class HomeViewBody extends StatelessWidget {
             }
             return null;
           },
-          builder: (context, prices) => SliverToBoxAdapter(
-            child: IgnorePointer(
-              ignoring: prices == null,
+          builder: (context, prices) {
+            return SliverToBoxAdapter(
               child: DefaultAppButton(
-                onPressed: () => _goToOrderScreen(context, prices!),
+                onPressed: () {
+                  if (prices == null) {
+                    AppDilagos.showErrorMessage(
+                      context,
+                      errMessage: LocaleKeys.please_select_service.tr(),
+                    );
+                    return;
+                  }
+                  _goToOrderScreen(context, prices);
+                },
                 text: LocaleKeys.order_now.tr(),
               ).withHorizontalPadding(16),
-            ),
-          ),
+            );
+          },
         ),
         const SliverGap(30),
       ],

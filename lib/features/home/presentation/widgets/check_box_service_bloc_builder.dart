@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/utils.dart';
 import '../controller/get_services_cubit/get_services_cubit.dart';
 
-class CheckNoxServiceBlocBuilder extends StatelessWidget {
-  const CheckNoxServiceBlocBuilder({
+class CheckBoxServiceBlocBuilder extends StatelessWidget {
+  const CheckBoxServiceBlocBuilder({
     super.key,
     required this.id,
   });
@@ -16,12 +16,10 @@ class CheckNoxServiceBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GetServicesCubit, GetServicesState>(
       buildWhen: (previous, current) =>
-          current is SelectedService ||
-          current is GetServicesSuccess ||
-          current is GetServicesLoading,
+          current is GetServicesSuccess || current is GetServicesLoading,
       builder: (context, state) {
-        if (state is SelectedService) {
-          final isActive = (state).isSelected && state.serviceId == id;
+        if (state is GetServicesSuccess) {
+          final isActive = state.selectedId == id;
           return SizedBox(
             height: 32,
             width: 32,
@@ -30,13 +28,11 @@ class CheckNoxServiceBlocBuilder extends StatelessWidget {
               onChanged: (val) {
                 context.read<GetServicesCubit>().selectService(
                   id,
-                  val!,
                 );
               },
               shape: const CircleBorder(
                 side: BorderSide(color: Color(0xffA89D9D)),
               ),
-
               side: const BorderSide(color: Color(0xffA89D9D)),
               fillColor: WidgetStateColor.resolveWith(
                 (states) =>
@@ -55,7 +51,6 @@ class CheckNoxServiceBlocBuilder extends StatelessWidget {
               onChanged: (val) {
                 context.read<GetServicesCubit>().selectService(
                   id,
-                  val!,
                 );
               },
               shape: const CircleBorder(

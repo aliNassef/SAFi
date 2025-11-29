@@ -10,7 +10,7 @@ import '../../../../core/widgets/widgets.dart';
 import '../../data/model/service_model.dart';
 import 'check_box_service_bloc_builder.dart';
 
-class HomeService extends StatefulWidget {
+class HomeService extends StatelessWidget {
   const HomeService({
     super.key,
     required this.serviceModel,
@@ -21,11 +21,6 @@ class HomeService extends StatefulWidget {
   final void Function()? onTap;
   final void Function(bool)? onExpansionChanged;
 
-  @override
-  State<HomeService> createState() => _HomeServiceState();
-}
-
-class _HomeServiceState extends State<HomeService> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,12 +34,12 @@ class _HomeServiceState extends State<HomeService> {
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
-          onExpansionChanged: widget.onExpansionChanged,
+          onExpansionChanged: onExpansionChanged,
           title: Row(
             children: [
-              CheckNoxServiceBlocBuilder(id: widget.serviceModel.id),
+              CheckBoxServiceBlocBuilder(id: serviceModel.id),
               Text(
-                widget.serviceModel.name,
+                serviceModel.name,
                 style: context.appTheme.medium20.copyWith(
                   color: AppColors.black,
                 ),
@@ -56,7 +51,7 @@ class _HomeServiceState extends State<HomeService> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  widget.serviceModel.desc,
+                  serviceModel.desc,
                   style: context.appTheme.medium24.copyWith(
                     color: AppColors.primary,
                   ),
@@ -66,7 +61,7 @@ class _HomeServiceState extends State<HomeService> {
             ).withHorizontalPadding(16),
             const Gap(5),
             CustomNetworkImage(
-              img: widget.serviceModel.img,
+              img: serviceModel.img,
               height: 200,
               width: context.width * 0.9,
               radius: 12,
@@ -74,7 +69,7 @@ class _HomeServiceState extends State<HomeService> {
             const Gap(10),
 
             DefaultAppButton(
-              onPressed: widget.onTap,
+              onPressed: onTap,
               text: LocaleKeys.select_wanted.tr(),
               padding: context.width * 0.05,
             ),

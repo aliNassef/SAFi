@@ -61,7 +61,6 @@ class ServicesListBlocBuilder extends StatelessWidget {
                 onExpansionChanged: (val) {
                   context.read<GetServicesCubit>().selectService(
                     services[index].id,
-                    val,
                   );
                 },
                 serviceModel: services[index],

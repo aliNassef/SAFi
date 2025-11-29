@@ -22,21 +22,15 @@ final class GetServicesFailure extends GetServicesState {
 
 final class GetServicesSuccess extends GetServicesState {
   final List<ServiceModel> services;
+  final String? selectedId;
 
-  const GetServicesSuccess({required this.services});
-
-  @override
-  List<Object> get props => [services];
-}
-
-final class SelectedService extends GetServicesState {
-  final String serviceId;
-  final bool isSelected;
-
-  const SelectedService({required this.isSelected, required this.serviceId});
+  const GetServicesSuccess({
+    required this.services,
+    this.selectedId,
+  });
 
   @override
-  List<Object> get props => [isSelected, serviceId];
+  List<Object> get props => [services, selectedId ?? ''];
 }
 
 final class GetPriciesServiceSuccess extends GetServicesState {
