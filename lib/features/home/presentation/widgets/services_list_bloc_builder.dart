@@ -50,13 +50,13 @@ class ServicesListBlocBuilder extends StatelessWidget {
             return SliverList.separated(
               itemBuilder: (_, index) => HomeService(
                 onTap: () async {
-                  final pricies = await _navigateToPriceList(
+                  final prices = await _navigateToPriceList(
                     context,
                     services[index].id,
                   );
 
                   // ignore: use_build_context_synchronously
-                  context.read<GetServicesCubit>().getPriciesList(pricies);
+                  context.read<GetServicesCubit>().setOrderDetails(prices);
                 },
                 onExpansionChanged: (val) {
                   context.read<GetServicesCubit>().selectService(
@@ -80,12 +80,12 @@ class ServicesListBlocBuilder extends StatelessWidget {
     BuildContext context,
     String serviceId,
   ) async {
-    final pricies = await AppNavigation.pushNamed(
+    final prices = await AppNavigation.pushNamed(
       context,
       PriciesView.routeName,
       useAppRoute: true,
       arguments: NavArgs(animation: NavAnimation.fade, data: serviceId),
     );
-    return pricies as PriceArgsModel;
+    return prices as PriceArgsModel;
   }
 }

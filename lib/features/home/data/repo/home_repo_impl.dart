@@ -25,8 +25,8 @@ class HomeRepoImpl extends HomeRepo {
     String serviceId,
   ) async {
     try {
-      final pricies = await _datasource.getServicePrices(serviceId);
-      return right(pricies);
+      final prices = await _datasource.getServicePrices(serviceId);
+      return right(prices);
     } catch (e) {
       return left(Failure(errMessage: e.toString()));
     }

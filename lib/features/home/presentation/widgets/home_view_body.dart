@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import '../../../../core/logging/app_logger.dart';
+
 import '../../../../core/navigation/app_navigation.dart';
 import '../../../../core/navigation/nav_animation_enum.dart';
 import '../../../../core/navigation/nav_args.dart';
@@ -17,17 +17,11 @@ import '../../../../core/widgets/widgets.dart';
 import 'home_content_section.dart';
 import 'services_list_bloc_builder.dart';
 
-class HomeViewBody extends StatefulWidget {
+class HomeViewBody extends StatelessWidget {
   const HomeViewBody({
     super.key,
   });
 
-  @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<HomeViewBody> {
-  PriceArgsModel? pricies;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -53,21 +47,18 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         ),
         const ServicesListBlocBuilder(),
         const SliverGap(30),
-        BlocConsumer<GetServicesCubit, GetServicesState>(
-          listenWhen: (previous, current) =>
-              current is GetPriciesServiceSuccess,
-          buildWhen: (previous, current) => current is! SelectedService,
-          listener: (context, state) {
+        BlocSelector<GetServicesCubit, GetServicesState, PriceArgsModel?>(
+          selector: (state) {
             if (state is GetPriciesServiceSuccess) {
-              pricies = state.data;
-              AppLogger.info('data of args $pricies');
+              return state.data;
             }
+            return null;
           },
-          builder: (context, state) => SliverToBoxAdapter(
+          builder: (context, prices) => SliverToBoxAdapter(
             child: IgnorePointer(
-              ignoring: pricies == null,
+              ignoring: prices == null,
               child: DefaultAppButton(
-                onPressed: () => _goToOrderScreent(context, pricies!),
+                onPressed: () => _goToOrderScreen(context, prices!),
                 text: LocaleKeys.order_now.tr(),
               ).withHorizontalPadding(16),
             ),
@@ -78,7 +69,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     );
   }
 
-  void _goToOrderScreent(BuildContext context, PriceArgsModel pricies) {
+  void _goToOrderScreen(BuildContext context, PriceArgsModel pricies) {
     AppNavigation.pushNamed(
       context,
       NewOrdersView.routeName,
