@@ -11,7 +11,7 @@ void main() {
     () async {
       await AppInitializer.init();
 
-      await SystemChrome.setPreferredOrientations([                       
+      await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]);
@@ -22,10 +22,10 @@ void main() {
           startLocale: const Locale('ar'),
           supportedLocales: const [Locale('ar'), Locale('en')],
           child: const SafiApp(),
-        ),     
+        ),
       );
     },
-    (error, stack) {                   
+    (error, stack) {
       FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     },
   );
