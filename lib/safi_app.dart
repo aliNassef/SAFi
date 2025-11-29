@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/controller/app_cubit/app_cubit_cubit.dart';
+import 'core/controller/internet_checker_cubit.dart';
 import 'core/di/service_locator.dart';
 import 'core/navigation/app_routes.dart';
 import 'core/utils/app_constants.dart';
