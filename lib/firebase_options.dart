@@ -72,4 +72,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'safi-3d6e2.firebasestorage.app',
     iosBundleId: 'com.example.safi',
   );
+
 }
