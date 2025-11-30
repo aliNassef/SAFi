@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:safi/features/orders/data/datasource/order_local_datasource.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../datasource/order_remote_datasource.dart';
@@ -9,9 +10,12 @@ import 'order_repo.dart';
 
 class OrderRepoImpl extends OrderRepo {
   final OrderRemoteDatasource _datasource;
-
-  OrderRepoImpl({required OrderRemoteDatasource datasource})
-    : _datasource = datasource;
+  final OrderLocalDatasource _localDatasource;
+  OrderRepoImpl({
+    required OrderRemoteDatasource datasource,
+    required OrderLocalDatasource localDatasource,
+  }) : _datasource = datasource,
+       _localDatasource = localDatasource;
   @override
   Future<Either<Failure, void>> createorder(OrdersModel order) async {
     try {
@@ -31,4 +35,7 @@ class OrderRepoImpl extends OrderRepo {
       return left(Failure(errMessage: e.toString()));
     }
   }
+
+  @override
+  String? getuserAddress() => _localDatasource.getUserAddress();
 }

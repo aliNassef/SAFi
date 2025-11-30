@@ -35,6 +35,7 @@ class AddressCubit extends Cubit<AddressState> with HydratedMixin {
   @override
   AddressState? fromJson(Map<String, dynamic> json) {
     if (json['address'] != null) {
+      _profileRepo.saveUserAddress(json['address']);
       return GetUserAddress(address: json['address']);
     }
     return null;

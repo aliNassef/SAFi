@@ -50,11 +50,11 @@ class OrderRemoteDatasourceImpl extends OrderRemoteDatasource {
     final userDoc = await _service.getUser(userId!);
     if (userDoc.exists) {
       final data = userDoc.data() as Map<String, dynamic>;
-      final int balance = data['walletBalance'];
+      final num balance = data['walletBalance'];
       if (balance < order.total) {
         throw Exception('رصيد المحفظة غير كافي');
       }
-      await _service.updateWallet(userId, balance - order.total);
+      await _service.updateWallet(userId, balance.toInt() - order.total.toInt());
     }
   }
 

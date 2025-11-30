@@ -1,11 +1,11 @@
 import '../../features/home/presentation/controller/get_services_cubit/get_services_cubit.dart';
-import '../../features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
+
 import 'di.dart';
 
 final injector = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  _setupExternal();
+  await _setupExternal();
   _setupAuthFeature();
   _setupHomeFeature();
   _setupOrderFeature();
@@ -31,6 +31,7 @@ void _setupProfileFeature() {
   );
   injector.registerLazySingleton<ProfileRepo>(
     () => ProfileRepoImpl(
+      localeDatasource: injector<ProfileLocaleDatasource>(),
       remoteDatasource: injector<ProfileRemoteDatasource>(),
     ),
   );
@@ -39,6 +40,12 @@ void _setupProfileFeature() {
     () => ProfileRemoteDatasourceImpl(
       db: injector<FirebaseStoreService>(),
       locationService: injector<LocationService>(),
+    ),
+  );
+
+  injector.registerLazySingleton<ProfileLocaleDatasource>(
+    () => ProfileLocaleDatasourceImpl(
+      sharedPreferences: injector<SharedPreferences>(),
     ),
   );
 }
@@ -80,8 +87,10 @@ void _setupTransactionFeature() {
   );
 }
 
-void _setupExternal() {
+Future<void> _setupExternal() async {
   injector.registerLazySingleton<CacheHelper>(() => CacheHelper());
+  final sharedPreferences = await SharedPreferences.getInstance();
+  injector.registerLazySingleton<SharedPreferences>(() => sharedPreferences);
   injector.registerLazySingleton<IternetCheckerCubit>(
     () => IternetCheckerCubit(),
   );
@@ -147,9 +156,15 @@ void _setupOrderFeature() {
     () => OrderCubit(injector<OrderRepo>()),
   );
   injector.registerLazySingleton<OrderRepo>(
-    () => OrderRepoImpl(datasource: injector<OrderRemoteDatasource>()),
+    () => OrderRepoImpl(
+      datasource: injector<OrderRemoteDatasource>(),
+      localDatasource: injector<OrderLocalDatasource>(),
+    ),
   );
 
+  injector.registerLazySingleton<OrderLocalDatasource>(
+    () => OrderLocalDatasourceImpl(preferences: injector<SharedPreferences>()),
+  );
   injector.registerLazySingleton<OrderRemoteDatasource>(
     () => OrderRemoteDatasourceImpl(
       authService: injector<FirebaseAuthService>(),

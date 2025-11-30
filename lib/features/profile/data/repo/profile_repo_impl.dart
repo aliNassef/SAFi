@@ -5,11 +5,15 @@ import 'package:safi/features/profile/data/datasource/profile_remote_datasource.
 import 'package:safi/features/profile/data/repo/profile_repo.dart';
 
 import '../../../home/data/model/pricies_service_model.dart';
+import '../datasource/profile_locale_datasource.dart';
 
 class ProfileRepoImpl implements ProfileRepo {
   final ProfileRemoteDatasource remoteDatasource;
-
-  ProfileRepoImpl({required this.remoteDatasource});
+  final ProfileLocaleDatasource localeDatasource;
+  ProfileRepoImpl({
+    required this.remoteDatasource,
+    required this.localeDatasource,
+  });
 
   @override
   Future<Either<Failure, List<PriciesServiceModel>>>
@@ -27,6 +31,16 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       final position = await remoteDatasource.determinePosition();
       return Right(position);
+    } catch (e) {
+      return Left(Failure(errMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> saveUserAddress(String address) async {
+    try {
+      await localeDatasource.saveUserAddress(address);
+      return right(null);
     } catch (e) {
       return Left(Failure(errMessage: e.toString()));
     }

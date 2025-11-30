@@ -31,4 +31,6 @@ class OrderCubit extends Cubit<OrderState> {
       (orders) => emit(GetOrderSuccess(orders: orders)),
     );
   }
+
+  String? getUserAddress() => _orderRepo.getuserAddress();
 }

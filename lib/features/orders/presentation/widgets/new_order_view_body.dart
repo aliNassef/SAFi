@@ -11,6 +11,7 @@ import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../auth/presentation/controller/auth_cubit.dart';
+import '../../../../core/services/local_notiffication_service.dart';
 
 import '../../../layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import '../../data/model/orders_model.dart';
@@ -38,7 +39,9 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
     super.initState();
     final user = context.read<AuthCubit>().getCurrentUser();
     _phoneNumber = TextEditingController(text: user?.phoneNumber);
-    _address = TextEditingController();
+    _address = TextEditingController(
+      text: context.read<OrderCubit>().getUserAddress(),
+    );
     _paymentMethod = TextEditingController();
     _formkey = GlobalKey<FormState>();
   }
@@ -141,6 +144,11 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
             break;
           case OrderSuccess():
             AppNavigation.pop(context, useAppRoute: true);
+            LocalNotificationService.instance.showNotification(
+              id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+              title: 'Order Created',
+              body: 'Your order has been placed successfully',
+            );
             AppDilagos.showToast(text: 'Order Add Successfully');
             context.read<NavControllerCubit>().controller.jumpToTab(1);
             break;

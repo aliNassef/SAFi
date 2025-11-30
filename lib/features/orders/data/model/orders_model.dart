@@ -9,7 +9,7 @@ class OrdersModel {
   final String phoneNumberId;
   final String serviceId;
   final List<PriciesServiceModel> orders;
-  final int total;
+  final num total;
   final String paymentMethod;
   final String address;
   final String? notes;
@@ -31,7 +31,7 @@ class OrdersModel {
     String? phoneNumberId,
     String? serviceId,
     List<PriciesServiceModel>? orders,
-    int? total,
+    num? total,
     String? paymentMethod,
     String? address,
     String? notes,
