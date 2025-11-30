@@ -46,11 +46,11 @@ class OrdersViewBody extends StatelessWidget {
                 onRefresh: () async {
                   _getRefreshedOrders(context);
                 },
-                child: CustomScrollView(
+                child: const CustomScrollView(
                   slivers: [
                     SliverFillRemaining(
                       hasScrollBody: false,
-                      child: const NoDataWidget(
+                      child: NoDataWidget(
                         title: 'No Orders',
                         message: 'You have no orders yet',
                         icon: Icons.shopping_cart_outlined,

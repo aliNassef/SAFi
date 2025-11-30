@@ -12,6 +12,7 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/widgets.dart';
 import '../../../auth/presentation/controller/auth_cubit.dart';
 
+import '../../../layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import '../../data/model/orders_model.dart';
 import '../../../../core/widgets/custom_drop_down_menu.dart';
 import '../../../home/data/model/price_args_model.dart';
@@ -141,7 +142,7 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
           case OrderSuccess():
             AppNavigation.pop(context, useAppRoute: true);
             AppDilagos.showToast(text: 'Order Add Successfully');
-            
+            context.read<NavControllerCubit>().controller.jumpToTab(1);
             break;
           case OrderFailure(:final errMessage):
             AppNavigation.pop(context, useAppRoute: true);

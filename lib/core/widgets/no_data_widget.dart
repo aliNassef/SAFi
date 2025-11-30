@@ -29,34 +29,33 @@ class NoDataWidget extends StatelessWidget {
               size: 64,
               color: AppColors.grey,
             ),
-            Gap(16),
+            const Gap(16),
 
             Text(
               title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: AppColors.primary,
               ),
             ),
-            Gap(8),
+            const Gap(8),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
                 color: AppColors.secondary,
               ),
             ),
 
             if (actionButton != null) ...[
-              Gap(24),
+              const Gap(24),
               actionButton!,
             ],
           ],
         ),
       ),
     );
-    ;
   }
 }

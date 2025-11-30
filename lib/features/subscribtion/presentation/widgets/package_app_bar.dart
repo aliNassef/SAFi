@@ -1,7 +1,7 @@
- import 'package:flutter/material.dart';
-
-import '../../../../core/navigation/app_navigation.dart';
- import '../../../../core/utils/utils.dart';
+import 'package:flutter/material.dart';
+import 'package:safi/features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
+import '../../../../core/navigation/navigation.dart';
+import '../../../../core/utils/utils.dart';
 
 class PackageAppBar extends StatelessWidget {
   const PackageAppBar({
@@ -18,7 +18,7 @@ class PackageAppBar extends StatelessWidget {
       ),
       elevation: 3,
       leading: GestureDetector(
-        onTap: () => AppNavigation.pop(context),
+        onTap: () => context.read<NavControllerCubit>().controller.jumpToTab(1),
         child: const Padding(
           padding: EdgeInsetsDirectional.only(start: 8.0),
           child: Icon(

@@ -1,4 +1,5 @@
 import '../../features/home/presentation/controller/get_services_cubit/get_services_cubit.dart';
+import '../../features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import 'di.dart';
 
 final injector = GetIt.instance;
@@ -12,6 +13,13 @@ Future<void> setupServiceLocator() async {
   _setupTransactionFeature();
   _setupNotificationFeature();
   _setupProfileFeature();
+  _setupLayoutFeature();
+}
+
+void _setupLayoutFeature() {
+  injector.registerFactory<NavControllerCubit>(
+    () => NavControllerCubit(),
+  );
 }
 
 void _setupProfileFeature() {

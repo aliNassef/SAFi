@@ -1,3 +1,4 @@
+import '../../features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import 'navigation.dart';
 import 'nav_animation_enum.dart';
 import 'nav_args.dart';
@@ -29,7 +30,10 @@ class AppRouter {
         break;
       //? layout
       case LayoutView.routeName:
-        page = const LayoutView();
+        page = BlocProvider(
+          create: (context) => injector<NavControllerCubit>(),
+          child: const LayoutView(),
+        );
         break;
       //? Pricies
       case PriciesView.routeName:

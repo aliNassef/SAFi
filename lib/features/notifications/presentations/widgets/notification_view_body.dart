@@ -48,11 +48,11 @@ class NotificationViewBody extends StatelessWidget {
               onRefresh: () async {
                 _getRefreshedNotifications(context);
               },
-              child: CustomScrollView(
+              child: const CustomScrollView(
                 slivers: [
                   SliverFillRemaining(
                     hasScrollBody: false,
-                    child: const NoDataWidget(
+                    child: NoDataWidget(
                       title: 'No Notifications',
                       message: 'You have no notifications yet',
                       icon: Icons.notifications_outlined,
@@ -85,6 +85,6 @@ class NotificationViewBody extends StatelessWidget {
 
   void _getRefreshedNotifications(BuildContext context) {
     final uid = injector<AuthCubit>().getCurrentUser()!.uid;
-    context.read<NotificationCubit>().getNotifications(uid!);
+    context.read<NotificationCubit>().getNotifications(uid);
   }
 }
