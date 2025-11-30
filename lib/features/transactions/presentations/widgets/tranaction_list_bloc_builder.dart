@@ -5,6 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/extensions/date_time_extension.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
+import '../../../../core/widgets/no_data_widget.dart';
 import '../cubit/transcation_cubit.dart';
 import 'transaction_card_item.dart';
 
@@ -42,6 +43,13 @@ class TransactionListBlocBuilder extends StatelessWidget {
           case TranscationError(:final errMessage):
             return CustomFailureWidget(meesage: errMessage);
           case TranscationLoaded(:final transactions):
+            if (transactions.isEmpty) {
+              return const NoDataWidget(
+                title: 'No Transactions',
+                message: 'You have no transactions yet',
+                icon: Icons.shopping_cart_outlined,
+              );
+            }
             return Expanded(
               child: ListView.separated(
                 itemBuilder: (_, index) {

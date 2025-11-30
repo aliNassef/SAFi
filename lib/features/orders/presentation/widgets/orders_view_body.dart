@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:safi/core/widgets/widgets.dart';
+import '../../../../core/widgets/no_data_widget.dart';
 import '../../../auth/presentation/controller/auth_cubit.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../../../core/widgets/custom_failure_widget.dart';
@@ -40,13 +41,28 @@ class OrdersViewBody extends StatelessWidget {
           case OrderFailure(:final errMessage):
             return CustomFailureWidget(meesage: errMessage);
           case GetOrderSuccess(:final orders):
+            if (orders.isEmpty) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  _getRefreshedOrders(context);
+                },
+                child: CustomScrollView(
+                  slivers: [
+                    SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: const NoDataWidget(
+                        title: 'No Orders',
+                        message: 'You have no orders yet',
+                        icon: Icons.shopping_cart_outlined,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
             return RefreshIndicator(
               onRefresh: () async {
-                final userId = context
-                    .read<AuthCubit>()
-                    .getCurrentUser()!
-                    .phoneNumber;
-                context.read<OrderCubit>().getOrders(userId!);
+                _getRefreshedOrders(context);
               },
               child: ListView.separated(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -72,5 +88,10 @@ class OrdersViewBody extends StatelessWidget {
         }
       },
     );
+  }
+
+  void _getRefreshedOrders(BuildContext context) {
+    final userId = context.read<AuthCubit>().getCurrentUser()!.phoneNumber;
+    context.read<OrderCubit>().getOrders(userId!);
   }
 }

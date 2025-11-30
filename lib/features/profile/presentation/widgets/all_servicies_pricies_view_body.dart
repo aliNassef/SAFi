@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/widgets/custom_failure_widget.dart';
+import '../../../../core/widgets/no_data_widget.dart';
 import '../../../home/data/model/pricies_service_model.dart';
 import '../controller/profile_cubit/profile_cubit.dart';
 import 'service_price_widget.dart';
@@ -34,6 +35,14 @@ class _AllServiciesPriciesViewBodyState
           current is GetAllServicePricesLoading,
       builder: (context, state) {
         if (state is GetAllServicePricesSuccess) {
+          if (state.prices.isEmpty) {
+            return const NoDataWidget(
+              title: 'No prices',
+              message: 'You have no prices yet',
+              icon: Icons.receipt_long_outlined,
+            );
+          }
+
           return ListView.builder(
             padding: const EdgeInsets.all(16),
             itemCount: state.prices.length,

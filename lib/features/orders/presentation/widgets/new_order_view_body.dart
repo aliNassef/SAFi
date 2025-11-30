@@ -141,6 +141,7 @@ class _NewOrderViewBodyState extends State<NewOrderViewBody> {
           case OrderSuccess():
             AppNavigation.pop(context, useAppRoute: true);
             AppDilagos.showToast(text: 'Order Add Successfully');
+            
             break;
           case OrderFailure(:final errMessage):
             AppNavigation.pop(context, useAppRoute: true);
