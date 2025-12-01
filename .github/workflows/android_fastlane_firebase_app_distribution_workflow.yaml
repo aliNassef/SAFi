@@ -13,11 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby (compatible with Fastlane)
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
-          bundler-cache: true
           working-directory: android
 
       - name: Install Fastlane
@@ -49,30 +48,8 @@ jobs:
           java --version
         working-directory: android
 
-      - name: Upload to Firebase App Distribution using Fastlane
+      - name: Upload to Firebase App Distribution
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: fastlane push_apk_by_distribution
         working-directory: android
-
-
- #####  FASTLANE  #####
-# default_platform(:android)
-
-# platform :android do
-#   desc "Lane For Release New APK By Firebase App Distribution"
-#   lane :push_apk_by_distribution do
-#     sh "flutter clean"
-#     sh "flutter build apk --release"
-
-#     firebase_app_distribution(
-#       app: ENV["FIREBASE_APP_ID"],
-#       android_artifact_type: "APK",
-#       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk",
-#       testers: "anassef798@gmail.com",
-#       release_notes: "push new apk version",
-#       firebase_cli_token: ENV("FIREBASE_CLI_TOKEN") 
-      
-#       )
-#   end
-# end
