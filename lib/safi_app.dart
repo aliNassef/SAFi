@@ -36,7 +36,7 @@ class SafiApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          initialRoute: SplashView.routeName,
+          initialRoute: SplashView.routeName, 
           onGenerateRoute: (settings) => AppRouter.onGenerateRoute(settings),
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,

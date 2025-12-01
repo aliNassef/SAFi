@@ -106,7 +106,7 @@ class _LayoutViewState extends State<LayoutView> {
             ),
             title: LocaleKeys.my_account.tr(),
             textStyle: context.appTheme.bold16.copyWith(
-              color: const Color(0xff353030),
+              color: AppColors.primary,
             ),
           ),
         ),

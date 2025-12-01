@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:safi/core/di/di.dart';
 import 'package:safi/core/navigation/app_navigation.dart';
 import 'package:safi/core/navigation/nav_animation_enum.dart';
 import 'package:safi/core/navigation/nav_args.dart';
@@ -15,6 +16,7 @@ import 'package:safi/features/auth/presentation/views/login_view.dart';
 import '../../../../core/extensions/mediaquery_size.dart';
 import '../../../../core/utils/app_bottom_sheet.dart';
 import '../../../transactions/presentations/view/wallet_balance_view.dart';
+import '../view/user_profile_view.dart';
 import 'custom_card_listtile.dart';
 import 'pricies_and_address_row_widget.dart';
 
@@ -38,6 +40,7 @@ class ProfileViewBody extends StatelessWidget {
         ),
         const Gap(10),
         CustomCardListTile(
+          onTap: () => _goTouserProfile(context),
           title: LocaleKeys.profile.tr(),
           icon: CupertinoIcons.profile_circled,
         ),
@@ -121,6 +124,17 @@ class ProfileViewBody extends StatelessWidget {
       LoginView.routeName,
       useAppRoute: true,
       (route) => true,
+    );
+  }
+
+  void _goTouserProfile(BuildContext context) {
+    AppNavigation.pushNamed(
+      context,
+      UserProfileView.routeName,
+      arguments: NavArgs(
+        animation: NavAnimation.fade,
+        data: context.read<ProfileCubit>(),
+      ),
     );
   }
 }

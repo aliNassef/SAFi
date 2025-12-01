@@ -24,7 +24,7 @@ void _setupLayoutFeature() {
 
 void _setupProfileFeature() {
   injector.registerFactory<ProfileCubit>(
-    () => ProfileCubit(injector()),
+    () => ProfileCubit(injector(), injector()),
   );
   injector.registerFactory<AddressCubit>(
     () => AddressCubit(injector()),
@@ -39,6 +39,7 @@ void _setupProfileFeature() {
   injector.registerLazySingleton<ProfileRemoteDatasource>(
     () => ProfileRemoteDatasourceImpl(
       db: injector<FirebaseStoreService>(),
+      fireStorageHelper: injector<FireStorageHelper>(),
       locationService: injector<LocationService>(),
     ),
   );
@@ -103,6 +104,9 @@ Future<void> _setupExternal() async {
   injector.registerLazySingleton<FirebaseStoreService>(
     () => FirebaseStoreService(),
   );
+  injector.registerLazySingleton<FireStorageHelper>(
+    () => FireStorageHelper(),
+  );
   injector.registerLazySingleton<StripeService>(
     () => StripeService.instance,
   );
@@ -113,6 +117,9 @@ Future<void> _setupExternal() async {
   );
   injector.registerLazySingleton<GeolocatorWrapper>(
     () => GeolocatorImpl(),
+  );
+  injector.registerLazySingleton<ImagePickerHelper>(
+    () => ImagePickerHelper(),
   );
 }
 

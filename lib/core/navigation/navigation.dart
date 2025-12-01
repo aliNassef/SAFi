@@ -23,3 +23,5 @@ export '../../features/subscribtion/presentation/view/package_subscriped_view.da
 export '../../features/subscribtion/presentation/view/package_view.dart';
 export '../di/service_locator.dart';
 export '../widgets/paypal_widget.dart';
+export 'package:safi/features/profile/presentation/view/user_profile_view.dart';
+export '../../features/layout/presentation/controller/cubit/nav_controller_cubit.dart';

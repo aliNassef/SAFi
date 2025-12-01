@@ -12,7 +12,6 @@ platform :android do
       testers: "anassef798@gmail.com",
       release_notes: "push new apk version",
       firebase_cli_token: ENV("FIREBASE_CLI_TOKEN") 
-      
       )
   end
 end

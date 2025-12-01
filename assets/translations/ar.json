@@ -119,5 +119,10 @@
   "your_current_address": "العنوان الحالي",
   "select_wanted": "اختر ما تريد",
   "please_select_service": "الرجاء اختيار الخدمة",
-  "no_internet_connection": "لا يوجد اتصال بالإنترنت"
+  "no_internet_connection": "لا يوجد اتصال بالإنترنت",
+  "name" : "الاسم",
+  "email" : "البريد الالكتروني",
+  "phone" : "رقم الجوال",
+  "update" : "تحديث"
+  
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:safi/core/enums/lang_enum.dart';
 
 import '../navigation/app_navigation.dart';
@@ -207,6 +208,34 @@ class AppBottomSheet {
               onPressed: () {
                 onConfirm(LangEnum.ar);
                 AppNavigation.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static Future<ImageSource?> showImageSourceDialog(
+    BuildContext context,
+  ) async {
+    return showCupertinoModalPopup(
+      barrierColor: Colors.black.withValues(alpha: 0.5),
+      context: context,
+      builder: (context) {
+        return CupertinoActionSheet(
+          title: const Text('Choose Image Source'),
+          actions: [
+            CupertinoActionSheetAction(
+              child: const Text('Gallery'),
+              onPressed: () {
+                AppNavigation.pop(context, result: ImageSource.gallery);
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: const Text('Camera'),
+              onPressed: () {
+                AppNavigation.pop(context, result: ImageSource.camera);
               },
             ),
           ],
