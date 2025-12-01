@@ -168,6 +168,7 @@ class AppBottomSheet {
                                   amountController.text,
                                 );
                                 onConfirm(amount);
+                                AppNavigation.pop(context);
                               }
                             },
                           ),

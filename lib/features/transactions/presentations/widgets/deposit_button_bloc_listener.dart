@@ -23,7 +23,9 @@ class DepositButtonBlocListener extends StatelessWidget {
           current is MakePaymentError ||
           current is MakePaymentLoaded,
       listener: (context, state) {
-        if (state is MakePaymentLoaded) {}
+        if (state is MakePaymentLoaded) {
+          // AppNavigation.pop(context);
+        }
         if (state is MakePaymentError) {
           AppNavigation.pop(context);
 
