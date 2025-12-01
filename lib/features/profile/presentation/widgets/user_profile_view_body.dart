@@ -49,7 +49,7 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
     image = context.read<ProfileCubit>().state is UploadProfileDataSuccess
         ? (context.read<ProfileCubit>().state as UploadProfileDataSuccess)
               .profile
-              .image 
+              .image
         : null;
   }
 
@@ -77,6 +77,28 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
               }
             },
             builder: (context, state) {
+              var circleAvatar = CircleAvatar(
+                radius: 60,
+                backgroundImage:
+                    state is UploadProfileDataSuccess &&
+                        state.profile.image != null
+                    ? FileImage(state.profile.image!)
+                    : image != null
+                    ? FileImage(image!)
+                    : null,
+                backgroundColor: Colors.grey.shade300,
+                child:
+                    state is UploadProfileDataSuccess &&
+                        state.profile.image != null
+                    ? null
+                    : image != null
+                    ? null
+                    : const Icon(
+                        Icons.person,
+                        size: 50,
+                        color: AppColors.white,
+                      ),
+              );
               return GestureDetector(
                 onTap: () async {
                   final cubit = context.read<ProfileCubit>();
@@ -88,28 +110,7 @@ class _UserProfileViewBodyState extends State<UserProfileViewBody> {
                     cubit.pickImage(source);
                   }
                 },
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage:
-                      state is UploadProfileDataSuccess &&
-                          state.profile.image != null
-                      ? FileImage(state.profile.image!)
-                      : image != null
-                      ? FileImage(image!)
-                      : null,
-                  backgroundColor: Colors.grey.shade300,
-                  child:
-                      state is UploadProfileDataSuccess &&
-                          state.profile.image != null
-                      ? null
-                      : image != null
-                      ? null
-                      : const Icon(
-                          Icons.person,
-                          size: 50,
-                          color: AppColors.white,
-                        ),
-                ),
+                child: circleAvatar,
               );
             },
           ),
