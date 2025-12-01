@@ -5,18 +5,18 @@ gradle-wrapper.jar
 /gradlew.bat
 /local.properties
 GeneratedPluginRegistrant.java
-.cxx/
-# # Fastlane sensitive files
-# fastlane/report.xml
-# fastlane/screenshots/
-# fastlane/test_output/
-# fastlane/Fastfile.secret
-# fastlane/Appfile.secret
-# fastlane/Matchfile.secret
-# fastlane/parameters.env
-# fastlane/credentials.json
-# fastlane/signing/
-# android/fastlane/Fastfile
+# .cxx/
+# # # Fastlane sensitive files
+# # fastlane/report.xml
+# # fastlane/screenshots/
+# # fastlane/test_output/
+# # fastlane/Fastfile.secret
+# # fastlane/Appfile.secret
+# # fastlane/Matchfile.secret
+# # fastlane/parameters.env
+# # fastlane/credentials.json
+# # fastlane/signing/
+# # android/fastlane/Fastfile
 # # Remember to never publicly share your keystore.
 # See https://flutter.dev/to/reference-keystore
 key.properties
