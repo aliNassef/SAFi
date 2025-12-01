@@ -29,7 +29,7 @@ class FirebaseStoreService {
     await _firestore
         .collection('users')
         .doc(userId)
-        .set(profileRequestModel.toJson());
+        .update(profileRequestModel.toJson());
   }
 
   Future<DocumentSnapshot> getUser(String userId) async {
