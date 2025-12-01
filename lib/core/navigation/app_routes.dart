@@ -1,4 +1,3 @@
-import '../../features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import 'navigation.dart';
 import 'nav_animation_enum.dart';
 import 'nav_args.dart';
@@ -102,6 +101,14 @@ class AppRouter {
       //? address
       case AddressView.routeName:
         page = const AddressView();
+        break;
+      //? user profile
+      case UserProfileView.routeName:
+        final args = settings.arguments as NavArgs;
+        page = BlocProvider.value(
+          value: args.data as ProfileCubit,
+          child: const UserProfileView(),
+        );
         break;
       default:
         page = const Scaffold(body: Center(child: Text('Page not found')));

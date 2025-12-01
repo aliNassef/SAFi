@@ -51,6 +51,8 @@ dependencies:
   internet_connection_checker_plus: ^2.7.2
   firebase_crashlytics: ^5.0.5
   firebase_analytics: ^12.0.4
+  firebase_storage: ^13.0.4
+  image_picker: ^1.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

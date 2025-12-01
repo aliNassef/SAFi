@@ -26,3 +26,28 @@ final class GetAllServicePricesError extends ProfileState {
   @override
   List<Object> get props => [errMessage];
 }
+
+final class UploadProfileDataLoading extends ProfileState {}
+
+final class UploadProfileDataSuccess extends ProfileState {
+  const UploadProfileDataSuccess({required this.profile});
+  final ProfileRequestModel profile;
+  @override
+  List<Object> get props => [profile];
+}
+
+final class UploadProfileDataError extends ProfileState {
+  final String errMessage;
+  const UploadProfileDataError({required this.errMessage});
+
+  @override
+  List<Object> get props => [errMessage];
+}
+
+final class PickImageSuccess extends ProfileState {
+  final XFile image;
+  const PickImageSuccess({required this.image});
+
+  @override
+  List<Object> get props => [image];
+}

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:safi/features/subscribtion/data/models/subscribtion_model.dart';
 import '../../features/orders/data/model/orders_model.dart';
+import '../../features/profile/data/model/profile_request._model.dart';
 
 class FirebaseStoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -19,6 +20,16 @@ class FirebaseStoreService {
       'walletBalance': 0,
       'createdAt': FieldValue.serverTimestamp(),
     });
+  }
+
+  Future<void> updateProfileData(
+    String userId,
+    ProfileRequestModel profileRequestModel,
+  ) async {
+    await _firestore
+        .collection('users')
+        .doc(userId)
+        .set(profileRequestModel.toJson());
   }
 
   Future<DocumentSnapshot> getUser(String userId) async {

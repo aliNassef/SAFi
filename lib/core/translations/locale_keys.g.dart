@@ -121,6 +121,10 @@ abstract class LocaleKeys {
       'amount_must_be_greater_than_zero';
   static const current_balance = 'current_balance';
   static const pound = 'pound';
+  static const name = 'name';
+  static const email = 'email';
+  static const phone = 'phone';
+  static const update = 'update';
   static const update_address = 'update_address';
   static const your_current_address = 'your_current_address';
   static const select_wanted = 'select_wanted';
