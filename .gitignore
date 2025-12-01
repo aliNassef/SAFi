@@ -19,7 +19,7 @@ migrate_working_dir/
 .idea/
 E:\Flutter Projects\safi\lib\env\.env
 *.env
-lib/env/env.dart
+# lib/env/env.dart
 # android/app/src/main/AndroidManifest.xml
 firebase.json
 # The .vscode folder contains launch configuration and tasks you configure in
