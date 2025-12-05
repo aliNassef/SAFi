@@ -13,7 +13,7 @@ class AppColors {
 
   // Legacy/extra palette (kept for compatibility)
   static const Color orange = Color(0xFFF95B1C);
-  static Color grey =   Color(0xFF090F1F).withValues(alpha: 0.5);
+  static Color grey = const Color(0xFF090F1F).withValues(alpha: 0.5);
   static const Color light = Color(0xFFF3F4F6);
   static const Color red = Color(0xFFEF2A39);
   static const Color brown = Color(0xFF3C2F2F);
