@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:safi/features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
-import '../../../../core/navigation/navigation.dart';
+ import '../../../../core/navigation/navigation.dart';
 import '../../../../core/utils/utils.dart';
 
 class PackageAppBar extends StatelessWidget {

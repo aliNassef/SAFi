@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
-import 'package:safi/features/layout/presentation/controller/cubit/nav_controller_cubit.dart';
 import 'package:safi/features/profile/presentation/view/profile_view.dart';
 import '../../../../core/navigation/navigation.dart';
 import '../../../../core/translations/locale_keys.g.dart';
