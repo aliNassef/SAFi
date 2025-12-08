@@ -146,7 +146,7 @@ class FirebaseStoreService {
       final userDoc = await _firestore.collection('users').doc(userId).get();
       if (!userDoc.exists) throw Exception("User not found");
 
-      final currentBalance = userDoc['walletBalance'] as int;
+      final currentBalance = (userDoc['walletBalance'] as num).toInt();
 
       if (currentBalance < price) {
         throw Exception("رصيد المحفظة غير كافي للاشتراك");
